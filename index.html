@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1A365D">
+<title>Distinta Digitale Live - Azzurra Due Carrare</title>
+<link rel="icon" href="logo.png">
+<style>
+  :root {
+    --blu-scuro: #1A365D;
+    --blu: #2B6CB0;
+    --azzurro: #E2E8F0;
+    --sfondo: #F0F4F8;
+    --testo: #2D3748;
+    --testo-chiaro: #4A5568;
+    --grigio: #A0AEC0;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--sfondo);
+    color: var(--testo);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.35;
+  }
+  .contenitore { max-width: 700px; margin: 0 auto; padding: 16px 16px 40px; }
+
+  header { text-align: center; padding: 8px 0 4px; }
+  header img { height: 72px; width: auto; display: block; margin: 0 auto 8px; }
+  .titolo { color: var(--blu-scuro); font-size: 24px; font-weight: 700; margin: 0; }
+  .sottotitolo { color: var(--blu); font-size: 18px; font-weight: 700; margin: 2px 0 0; }
+
+  .info-match { text-align: center; color: var(--testo-chiaro); font-size: 14px; margin: 14px 0 16px; }
+  .info-match div + div { margin-top: 2px; }
+
+  .btn-pdf {
+    display: block; width: 100%; text-align: center; text-decoration: none;
+    background: var(--blu-scuro); color: #fff; font-weight: 700; font-size: 16px;
+    padding: 14px 16px; border-radius: 10px; margin-bottom: 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,.08);
+  }
+  .btn-pdf:active { background: var(--blu); }
+
+  .card { background: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,.05); margin-bottom: 15px; }
+  .nome-squadra { color: var(--blu); font-size: 18px; font-weight: 700; border-bottom: 2px solid var(--azzurro); padding-bottom: 5px; margin-bottom: 10px; }
+  .allenatore { font-style: italic; color: var(--testo-chiaro); font-size: 13px; margin-bottom: 10px; }
+  .riga { display: flex; align-items: baseline; padding: 6px 0; border-bottom: 1px solid #EDF2F7; font-size: 15px; }
+  .riga:last-child { border-bottom: 0; }
+  .num { font-weight: 700; color: var(--blu); width: 28px; flex: none; }
+  .nome { flex: 1; padding-left: 5px; min-width: 0; overflow-wrap: anywhere; }
+  .anno { color: var(--grigio); width: 44px; text-align: right; flex: none; }
+
+  .messaggio { background: #fff; border-radius: 10px; padding: 18px; text-align: center; color: var(--testo-chiaro); box-shadow: 0 4px 6px rgba(0,0,0,.05); }
+  .messaggio strong { display: block; color: var(--blu-scuro); margin-bottom: 6px; }
+  .avviso { text-align: center; font-size: 12px; color: #B7791F; margin-bottom: 10px; }
+
+  .sponsor { margin-top: 24px; border-top: 1px dashed #CBD5E0; padding-top: 14px; }
+  .sponsor h2 { text-align: center; font-size: 12px; letter-spacing: .08em; color: var(--testo-chiaro); margin: 0 0 10px; }
+  .griglia-sponsor { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .griglia-sponsor .cella { background: #fff; border-radius: 8px; height: 64px; display: flex; align-items: center; justify-content: center; padding: 6px; }
+  .griglia-sponsor img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+  footer { text-align: center; color: var(--grigio); font-size: 12px; margin-top: 22px; }
+</style>
+</head>
+<body>
+<div class="contenitore">
+  <header>
+    <img src="logo.png" alt="A.S.D. Azzurra Due Carrare">
+    <h1 class="titolo">AZZURRA DUE CARRARE</h1>
+    <p class="sottotitolo">DISTINTA DIGITALE LIVE</p>
+  </header>
+
+  <main id="contenuto">
+    <div class="messaggio"><strong>Caricamento…</strong></div>
+  </main>
+
+  <section class="sponsor" id="sponsor" hidden>
+    <h2>I NOSTRI SPONSOR</h2>
+    <div class="griglia-sponsor" id="griglia-sponsor"></div>
+  </section>
+
+  <footer id="piede"></footer>
+</div>
+
+<script>
+  // ---- Impostazioni ------------------------------------------------------
+  const INTERVALLO_MS = 30000;   // ogni quanto la pagina rilegge la distinta
+  // Loghi sponsor (cartella "sponsor/"). Per aggiungerne uno: caricare il file
+  // nella cartella e aggiungere qui il suo nome.
+  const SPONSOR = [
+    "01_michele_zanin.png", "02_cosmap.png", "03_viv_group.png",
+    "04_errea_play_padova.png", "05_isolpoint.png", "06_el_bacaro.png",
+    "07_syntesys.png", "08_am_assicurazioni.png", "09_la_pizza_a_casa.png"
+  ];
+  const NOMI_SPONSOR = {
+    "01_michele_zanin.png": "Michele Zanin", "02_cosmap.png": "Cosmap", "03_viv_group.png": "Viv Group",
+    "04_errea_play_padova.png": "Errea Play Padova", "05_isolpoint.png": "Isolpoint",
+    "06_el_bacaro.png": "El Bacaro", "07_syntesys.png": "Syntesys",
+    "08_am_assicurazioni.png": "A.M. Assicurazioni", "09_la_pizza_a_casa.png": "La Pizza a Casa"
+  };
+
+  // ---- Utilità: tutto il testo passa da textContent (mai da innerHTML) ----
+  function el(tag, classe, testo) {
+    const e = document.createElement(tag);
+    if (classe) e.className = classe;
+    if (testo !== undefined && testo !== null) e.textContent = String(testo);
+    return e;
+  }
+
+  const contenuto = document.getElementById("contenuto");
+  const piede = document.getElementById("piede");
+  let haDati = false;
+
+  function messaggio(titolo, testo) {
+    const box = el("div", "messaggio");
+    box.appendChild(el("strong", null, titolo));
+    box.appendChild(document.createTextNode(testo));
+    return box;
+  }
+
+  function cardSquadra(icona, dati, titoloDefault) {
+    dati = dati || {};
+    const card = el("div", "card");
+    card.appendChild(el("div", "nome-squadra", icona + " " + (dati.squadra || titoloDefault)));
+    if (dati.allenatore) card.appendChild(el("div", "allenatore", "All. " + dati.allenatore));
+    (dati.giocatori || []).forEach(function (g) {
+      const nome = String((g && g.GIOCATORE) || "").trim();
+      if (!nome) return;
+      const riga = el("div", "riga");
+      riga.appendChild(el("span", "num", g["N°"]));
+      riga.appendChild(el("span", "nome", nome));
+      riga.appendChild(el("span", "anno", g.ANNO));
+      card.appendChild(riga);
+    });
+    return card;
+  }
+
+  function formattaOra(iso) {
+    const d = new Date(iso);
+    if (isNaN(d)) return "";
+    return d.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" });
+  }
+
+  function disegna(d) {
+    const info = d.info_gara || {};
+    const frag = document.createDocumentFragment();
+
+    const box = el("div", "info-match");
+    box.appendChild(el("div", null, "🏆 " + (info.campionato || "") + "  |  📅 " + (info.data || "")));
+    if (info.arbitro) box.appendChild(el("div", null, "🏁 Arbitro: " + info.arbitro));
+    frag.appendChild(box);
+
+    const pdf = el("a", "btn-pdf", "📄 SCARICA LA DISTINTA (PDF)");
+    pdf.href = "distinta.pdf?v=" + encodeURIComponent(d.aggiornato || Date.now());
+    pdf.setAttribute("download", "distinta_ufficiale_A4.pdf");
+    frag.appendChild(pdf);
+
+    frag.appendChild(cardSquadra("🏠", d.casa, "SQUADRA CASA"));
+    frag.appendChild(cardSquadra("🚀", d.ospite, "SQUADRA OSPITE"));
+
+    contenuto.replaceChildren(frag);
+    const ora = formattaOra(d.aggiornato);
+    piede.textContent = "Aggiornamento automatico ogni 30 secondi" + (ora ? " · ultima distinta delle " + ora : "");
+  }
+
+  async function carica() {
+    try {
+      // il parametro ts evita copie vecchie in cache
+      const r = await fetch("distinta.json?ts=" + Date.now(), { cache: "no-store" });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      const d = await r.json();
+      if (!d || !d.casa || !d.ospite) throw new Error("formato non valido");
+      disegna(d);
+      haDati = true;
+    } catch (e) {
+      if (!haDati) {
+        contenuto.replaceChildren(messaggio(
+          "⌛ DISTINTA IN AGGIORNAMENTO",
+          "La segreteria sta caricando le distinte ufficiali. La pagina si aggiorna da sola."
+        ));
+      } else {
+        // segnale debole: si lasciano a schermo gli ultimi dati letti
+        piede.textContent = "Connessione assente: mostrati gli ultimi dati ricevuti. Riprovo tra poco…";
+      }
+    }
+  }
+
+  function mostraSponsor() {
+    const griglia = document.getElementById("griglia-sponsor");
+    SPONSOR.forEach(function (file) {
+      const cella = el("div", "cella");
+      const img = document.createElement("img");
+      img.src = "sponsor/" + file;
+      img.alt = NOMI_SPONSOR[file] || "Sponsor";
+      img.loading = "lazy";
+      cella.appendChild(img);
+      griglia.appendChild(cella);
+    });
+    if (SPONSOR.length) document.getElementById("sponsor").hidden = false;
+  }
+
+  mostraSponsor();
+  carica();
+  setInterval(carica, INTERVALLO_MS);
+  // al ritorno sull'app (telefono sbloccato, cambio scheda) aggiorna subito
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) carica();
+  });
+</script>
+</body>
+</html>
