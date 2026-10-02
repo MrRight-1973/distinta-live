@@ -34,6 +34,7 @@
   .sottotitolo { color: var(--blu); font-size: 18px; font-weight: 700; margin: 2px 0 0; }
 
   .info-match { text-align: center; color: var(--testo-chiaro); font-size: 14px; margin: 14px 0 16px; }
+  .icona { width: 1.15em; height: 1.15em; vertical-align: -0.2em; }
   .info-match div + div { margin-top: 2px; }
 
   .btn-pdf {
@@ -133,6 +134,25 @@
     return d.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" });
   }
 
+  // Non esiste un emoji "fischietto": lo disegno come piccola icona SVG
+  function fischietto() {
+    const NS = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", "0 0 24 24");
+    svg.setAttribute("class", "icona");
+    svg.setAttribute("aria-hidden", "true");
+    [["circle", { cx: 15, cy: 14, r: 6.5, fill: "#4A5568" }],
+     ["rect", { x: 1.5, y: 8.5, width: 12, height: 5, rx: 1.5, fill: "#4A5568" }],
+     ["circle", { cx: 15, cy: 14, r: 2.2, fill: "#fff" }],
+     ["circle", { cx: 15, cy: 6.2, r: 2, fill: "none", stroke: "#4A5568", "stroke-width": 1.6 }]
+    ].forEach(function (x) {
+      const e = document.createElementNS(NS, x[0]);
+      for (const k in x[1]) e.setAttribute(k, x[1][k]);
+      svg.appendChild(e);
+    });
+    return svg;
+  }
+
   function disegna(d) {
     const info = d.info_gara || {};
     const frag = document.createDocumentFragment();
@@ -140,7 +160,18 @@
     const box = el("div", "info-match");
     if (info.campionato) box.appendChild(el("div", null, "🏆 " + info.campionato));
     if (info.data) box.appendChild(el("div", null, "📅 " + info.data));
-    if (info.arbitro) box.appendChild(el("div", null, "🏁 Arbitro: " + info.arbitro));
+    if (info.arbitro) {
+      const r = el("div", null);
+      r.appendChild(fischietto());
+      r.appendChild(document.createTextNode(" Arbitro: " + info.arbitro));
+      box.appendChild(r);
+    }
+    const guardalinee = [info.assistente1, info.assistente2]
+      .map(function (n) { return String(n || "").trim(); })
+      .filter(Boolean);
+    if (guardalinee.length) {
+      box.appendChild(el("div", null, guardalinee.map(function (n) { return "🚩 " + n; }).join("   ")));
+    }
     frag.appendChild(box);
 
     const pdf = el("a", "btn-pdf", "📄 SCARICA LA DISTINTA (PDF)");
