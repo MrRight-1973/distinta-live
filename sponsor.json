@@ -1,41 +1,45 @@
 {
   "sponsor": [
     {
-      "file": "01_michele_zanin.png",
+      "file": "01_michele_zanin_d90706.png",
       "nome": "Michele Zanin"
     },
     {
-      "file": "02_cosmap.png",
+      "file": "02_cosmap_5792b5.png",
       "nome": "Cosmap"
     },
     {
-      "file": "03_viv_group.png",
+      "file": "03_viv_group_f98918.png",
       "nome": "Viv Group"
     },
     {
-      "file": "04_errea_play_padova.png",
+      "file": "04_errea_play_padova_8fd89c.png",
       "nome": "Errea Play Padova"
     },
     {
-      "file": "05_isolpoint.png",
+      "file": "05_isolpoint_f1925e.png",
       "nome": "Isolpoint"
     },
     {
-      "file": "06_el_bacaro.png",
+      "file": "06_el_bacaro_b7aa38.png",
       "nome": "El Bacaro"
     },
     {
-      "file": "07_syntesys.png",
+      "file": "07_syntesys_d20355.png",
       "nome": "Syntesys"
     },
     {
-      "file": "08_am_assicurazioni.png",
-      "nome": "A.M. Assicurazioni"
+      "file": "08_a_m_6abbc1.png",
+      "nome": "A.M"
     },
     {
-      "file": "09_la_pizza_a_casa.png",
-      "nome": "La Pizza a Casa"
+      "file": "09_la_pizza_a_casa_87a723.png",
+      "nome": "La Pizza A Casa"
+    },
+    {
+      "file": "10_02_cosmap_5ee15d.png",
+      "nome": "02 Cosmap"
     }
   ],
-  "aggiornato": "2026-10-02T00:00:00+00:00"
+  "aggiornato": "2026-10-02T16:25:27+00:00"
 }
