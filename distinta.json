@@ -1,13 +1,13 @@
 {
   "info_gara": {
-    "campionato": "1ª CATEGORIA GIRONE E",
+    "campionato": "CAMPIONATO 1° CATEGORIA GIRONE E",
     "data": "27/09/2026",
     "arbitro": "",
     "assistente1": "",
     "assistente2": ""
   },
   "casa": {
-    "squadra": "",
+    "squadra": "AZZURRA DUECARRARE",
     "allenatore": "PETRACIN ALESSANDRO",
     "giocatori": [
       {
@@ -63,7 +63,7 @@
       {
         "N°": 11,
         "GIOCATORE": "CORREZZOLA ALBERTO",
-        "ANNO": "1987"
+        "ANNO": "1997"
       },
       {
         "N°": 12,
@@ -113,7 +113,7 @@
     ]
   },
   "ospite": {
-    "squadra": "",
+    "squadra": "A.S.D. PETTORAZZA SAN MARTINO",
     "allenatore": "SADOCCO MARCO",
     "giocatori": [
       {
@@ -154,7 +154,7 @@
       {
         "N°": 8,
         "GIOCATORE": "MORANDI ENRICO",
-        "ANNO": "2008"
+        "ANNO": "2010"
       },
       {
         "N°": 9,
@@ -199,7 +199,7 @@
       {
         "N°": 17,
         "GIOCATORE": "MARITAN FRANCESCO",
-        "ANNO": "2005"
+        "ANNO": "2003"
       },
       {
         "N°": 18,
@@ -218,5 +218,5 @@
       }
     ]
   },
-  "aggiornato": "2026-10-02T15:07:43+00:00"
+  "aggiornato": "2026-10-02T15:20:24+00:00"
 }
