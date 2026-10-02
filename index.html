@@ -59,8 +59,10 @@
 
   .sponsor { margin-top: 24px; border-top: 1px dashed #CBD5E0; padding-top: 14px; }
   .sponsor h2 { text-align: center; font-size: 12px; letter-spacing: .08em; color: var(--testo-chiaro); margin: 0 0 10px; }
-  .griglia-sponsor { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-  .griglia-sponsor .cella { background: #fff; border-radius: 8px; height: 64px; display: flex; align-items: center; justify-content: center; padding: 6px; }
+  .griglia-sponsor { display: flex; flex-direction: column; gap: 8px; }
+  .riga-sponsor { display: flex; justify-content: center; gap: 8px; }
+  .griglia-sponsor .cella { background: #fff; border-radius: 8px; height: 64px; width: calc((100% - 16px) / 3);
+    display: flex; align-items: center; justify-content: center; padding: 6px; }
   .griglia-sponsor img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
   footer { text-align: center; color: var(--grigio); font-size: 12px; margin-top: 22px; }
@@ -89,20 +91,6 @@
 <script>
   // ---- Impostazioni ------------------------------------------------------
   const INTERVALLO_MS = 30000;   // ogni quanto la pagina rilegge la distinta
-  // Loghi sponsor (cartella "sponsor/"). Per aggiungerne uno: caricare il file
-  // nella cartella e aggiungere qui il suo nome.
-  const SPONSOR = [
-    "01_michele_zanin.png", "02_cosmap.png", "03_viv_group.png",
-    "04_errea_play_padova.png", "05_isolpoint.png", "06_el_bacaro.png",
-    "07_syntesys.png", "08_am_assicurazioni.png", "09_la_pizza_a_casa.png"
-  ];
-  const NOMI_SPONSOR = {
-    "01_michele_zanin.png": "Michele Zanin", "02_cosmap.png": "Cosmap", "03_viv_group.png": "Viv Group",
-    "04_errea_play_padova.png": "Errea Play Padova", "05_isolpoint.png": "Isolpoint",
-    "06_el_bacaro.png": "El Bacaro", "07_syntesys.png": "Syntesys",
-    "08_am_assicurazioni.png": "A.M. Assicurazioni", "09_la_pizza_a_casa.png": "La Pizza a Casa"
-  };
-
   // ---- Utilità: tutto il testo passa da textContent (mai da innerHTML) ----
   function el(tag, classe, testo) {
     const e = document.createElement(tag);
@@ -189,26 +177,55 @@
     }
   }
 
-  function mostraSponsor() {
-    const griglia = document.getElementById("griglia-sponsor");
-    SPONSOR.forEach(function (file) {
-      const cella = el("div", "cella");
-      const img = document.createElement("img");
-      img.src = "sponsor/" + file;
-      img.alt = NOMI_SPONSOR[file] || "Sponsor";
-      img.loading = "lazy";
-      cella.appendChild(img);
-      griglia.appendChild(cella);
-    });
-    if (SPONSOR.length) document.getElementById("sponsor").hidden = false;
+  // Righe equilibrate: 10 -> 3,3,2,2   9 -> 3,3,3   7 -> 3,2,2   4 -> 2,2   (massimo 3 per riga)
+  function distribuisciRighe(n, maxColonne) {
+    const righe = Math.ceil(n / maxColonne);
+    const base = Math.floor(n / righe), extra = n % righe;
+    return Array.from({ length: righe }, function (_, i) { return i < extra ? base + 1 : base; });
   }
 
-  mostraSponsor();
+  let firmaSponsor = null;
+  async function caricaSponsor() {
+    try {
+      const r = await fetch("sponsor.json?ts=" + Date.now(), { cache: "no-store" });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      const d = await r.json();
+      const voci = (d.sponsor || []).filter(function (v) {
+        return v && /^[A-Za-z0-9_.\-]+$/.test(String(v.file || ""));
+      }).slice(0, 10);
+      const firma = voci.map(function (v) { return v.file; }).join("|");
+      if (firma === firmaSponsor) return;          // niente cambiato: non ridisegno
+      firmaSponsor = firma;
+
+      const griglia = document.getElementById("griglia-sponsor");
+      griglia.replaceChildren();
+      let i = 0;
+      distribuisciRighe(voci.length, 3).forEach(function (quanti) {
+        const riga = el("div", "riga-sponsor");
+        voci.slice(i, i + quanti).forEach(function (v) {
+          const cella = el("div", "cella");
+          const img = document.createElement("img");
+          img.src = "sponsor/" + v.file;
+          img.alt = v.nome || "Sponsor";
+          img.loading = "lazy";
+          cella.appendChild(img);
+          riga.appendChild(cella);
+        });
+        i += quanti;
+        griglia.appendChild(riga);
+      });
+      document.getElementById("sponsor").hidden = voci.length === 0;
+    } catch (e) {
+      // elenco non disponibile: si lasciano gli sponsor già mostrati (o nessuno)
+    }
+  }
+
   carica();
-  setInterval(carica, INTERVALLO_MS);
+  caricaSponsor();
+  setInterval(function () { carica(); caricaSponsor(); }, INTERVALLO_MS);
   // al ritorno sull'app (telefono sbloccato, cambio scheda) aggiorna subito
   document.addEventListener("visibilitychange", function () {
-    if (!document.hidden) carica();
+    if (!document.hidden) { carica(); caricaSponsor(); }
   });
 </script>
 </body>
