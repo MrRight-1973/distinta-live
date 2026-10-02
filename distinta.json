@@ -1,10 +1,10 @@
 {
   "info_gara": {
-    "campionato": "CAMPIONATO 1° CATEGORIA GIRONE E",
-    "data": "27/09/2026 ore 15:30",
-    "arbitro": "FORMENTON NICOLA sezione ESTE",
-    "assistente1": "GIUSTO GIANLUCA",
-    "assistente2": "STEFANI ANDREA"
+    "campionato": "1° CATEGORIA GIRONE E",
+    "data": "27/09/2026",
+    "arbitro": "",
+    "assistente1": "",
+    "assistente2": ""
   },
   "casa": {
     "squadra": "AZZURRA DUECARRARE",
@@ -63,7 +63,7 @@
       {
         "N°": 11,
         "GIOCATORE": "CORREZZOLA ALBERTO",
-        "ANNO": "1987"
+        "ANNO": "1997"
       },
       {
         "N°": 12,
@@ -164,7 +164,7 @@
       {
         "N°": 10,
         "GIOCATORE": "BALLARIN ALEX (VC)",
-        "ANNO": "2007"
+        "ANNO": "1997"
       },
       {
         "N°": 11,
@@ -218,5 +218,5 @@
       }
     ]
   },
-  "aggiornato": "2026-10-02T16:55:13+00:00"
+  "aggiornato": "2026-10-02T18:34:01+00:00"
 }
