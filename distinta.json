@@ -1,10 +1,10 @@
 {
   "info_gara": {
     "campionato": "CAMPIONATO 1° CATEGORIA GIRONE E",
-    "data": "27/09/2026",
+    "data": "27/09/2026 ore 15:30",
     "arbitro": "FORMENTON NICOLA sezione ESTE",
-    "assistente1": "",
-    "assistente2": ""
+    "assistente1": "ASSISTENTE 1",
+    "assistente2": "ASSISTENTE 2"
   },
   "casa": {
     "squadra": "AZZURRA DUECARRARE",
@@ -218,5 +218,5 @@
       }
     ]
   },
-  "aggiornato": "2026-10-02T16:44:31+00:00"
+  "aggiornato": "2026-10-02T16:45:53+00:00"
 }
