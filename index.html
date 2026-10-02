@@ -110,10 +110,10 @@
     return box;
   }
 
-  function cardSquadra(icona, dati, titoloDefault) {
+  function cardSquadra(dati, titoloDefault) {
     dati = dati || {};
     const card = el("div", "card");
-    card.appendChild(el("div", "nome-squadra", icona + " " + (dati.squadra || titoloDefault)));
+    card.appendChild(el("div", "nome-squadra", dati.squadra || titoloDefault));
     if (dati.allenatore) card.appendChild(el("div", "allenatore", "All. " + dati.allenatore));
     (dati.giocatori || []).forEach(function (g) {
       const nome = String((g && g.GIOCATORE) || "").trim();
@@ -138,7 +138,8 @@
     const frag = document.createDocumentFragment();
 
     const box = el("div", "info-match");
-    box.appendChild(el("div", null, "🏆 " + (info.campionato || "") + "  |  📅 " + (info.data || "")));
+    if (info.campionato) box.appendChild(el("div", null, "🏆 " + info.campionato));
+    if (info.data) box.appendChild(el("div", null, "📅 " + info.data));
     if (info.arbitro) box.appendChild(el("div", null, "🏁 Arbitro: " + info.arbitro));
     frag.appendChild(box);
 
@@ -147,8 +148,8 @@
     pdf.setAttribute("download", "distinta_ufficiale_A4.pdf");
     frag.appendChild(pdf);
 
-    frag.appendChild(cardSquadra("🏠", d.casa, "SQUADRA CASA"));
-    frag.appendChild(cardSquadra("🚀", d.ospite, "SQUADRA OSPITE"));
+    frag.appendChild(cardSquadra(d.casa, "SQUADRA CASA"));
+    frag.appendChild(cardSquadra(d.ospite, "SQUADRA OSPITE"));
 
     contenuto.replaceChildren(frag);
     const ora = formattaOra(d.aggiornato);
