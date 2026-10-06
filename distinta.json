@@ -1,10 +1,10 @@
 {
   "info_gara": {
-    "campionato": "CAMPIONATO 1° CATEGORIA GIRONE E",
+    "campionato": "1° CATEGORIA GIRONE E",
     "data": "27/09/2026",
     "arbitro": "",
-    "assistente1": "",
-    "assistente2": ""
+    "assistente1": "MUNEGATO FABIO",
+    "assistente2": "MARCHI DANIELE"
   },
   "casa": {
     "squadra": "AZZURRA DUECARRARE",
@@ -63,7 +63,7 @@
       {
         "N°": 11,
         "GIOCATORE": "CORREZZOLA ALBERTO",
-        "ANNO": "1997"
+        "ANNO": "1987"
       },
       {
         "N°": 12,
@@ -78,7 +78,7 @@
       {
         "N°": 14,
         "GIOCATORE": "BERGAMASCO ANDREA",
-        "ANNO": "1990"
+        "ANNO": "1999"
       },
       {
         "N°": 15,
@@ -113,110 +113,110 @@
     ]
   },
   "ospite": {
-    "squadra": "ASD SPES POJANA",
-    "allenatore": "CAVION MICHELE",
+    "squadra": "A.S.D. PETTORAZZA SAN MARTINO",
+    "allenatore": "SADOCCO MARCO",
     "giocatori": [
       {
         "N°": 1,
-        "GIOCATORE": "ZANELLA DAVIDE",
-        "ANNO": "2005"
+        "GIOCATORE": "CHERUBIN LUCA",
+        "ANNO": "2004"
       },
       {
         "N°": 2,
-        "GIOCATORE": "EL GHEFIRY RACHID",
-        "ANNO": "1997"
+        "GIOCATORE": "ROSSI ANDREA",
+        "ANNO": "2005"
       },
       {
         "N°": 3,
-        "GIOCATORE": "CONTE FEDERICO (C)",
+        "GIOCATORE": "NESE MANUEL",
         "ANNO": "2001"
       },
       {
         "N°": 4,
-        "GIOCATORE": "BERSAN MARCO (VC)",
-        "ANNO": "1997"
+        "GIOCATORE": "BERGO ALEX",
+        "ANNO": "2000"
       },
       {
         "N°": 5,
-        "GIOCATORE": "GHIGI FILIPPO",
-        "ANNO": "2004"
+        "GIOCATORE": "RANZATO LORENZO",
+        "ANNO": "2000"
       },
       {
         "N°": 6,
-        "GIOCATORE": "CREMA NICO",
-        "ANNO": "1994"
-      },
-      {
-        "N°": 7,
-        "GIOCATORE": "FANTIN ENRICO",
-        "ANNO": "2003"
-      },
-      {
-        "N°": 8,
-        "GIOCATORE": "MANTONI PIETRO",
-        "ANNO": "1996"
-      },
-      {
-        "N°": 9,
-        "GIOCATORE": "CANALINE ANDREA",
+        "GIOCATORE": "CAMISOTTI NICOLAS",
         "ANNO": "2002"
       },
       {
-        "N°": 10,
-        "GIOCATORE": "BOTTON SAMUELE",
-        "ANNO": "2005"
-      },
-      {
-        "N°": 11,
-        "GIOCATORE": "DJORDJEVIC ALEKSA",
-        "ANNO": "2005"
-      },
-      {
-        "N°": 12,
-        "GIOCATORE": "PIGHETTIN FEDERICO",
-        "ANNO": "1994"
-      },
-      {
-        "N°": 13,
-        "GIOCATORE": "RAIMONDO RICCARDO",
-        "ANNO": "2006"
-      },
-      {
-        "N°": 14,
-        "GIOCATORE": "GIACOMUZZO GIULIO",
-        "ANNO": "2006"
-      },
-      {
-        "N°": 15,
-        "GIOCATORE": "DIOUF ALIOUNE",
+        "N°": 7,
+        "GIOCATORE": "MAZZETTO MATTEO (C)",
         "ANNO": "1998"
       },
       {
-        "N°": 16,
-        "GIOCATORE": "CASELLO ELIA",
-        "ANNO": "2006"
+        "N°": 8,
+        "GIOCATORE": "MORANDI ENRICO",
+        "ANNO": "1998"
       },
       {
-        "N°": 17,
-        "GIOCATORE": "MASTELLA ELIA",
-        "ANNO": "2006"
+        "N°": 9,
+        "GIOCATORE": "MARINELLI LEONARDO",
+        "ANNO": "2004"
       },
       {
-        "N°": 18,
-        "GIOCATORE": "ZONTA ANDREA",
+        "N°": 10,
+        "GIOCATORE": "BALLARIN ALEX (VC)",
+        "ANNO": "1997"
+      },
+      {
+        "N°": 11,
+        "GIOCATORE": "SADELLAH SALAH DINE",
+        "ANNO": "1999"
+      },
+      {
+        "N°": 12,
+        "GIOCATORE": "MATTIOLI ROBERTO",
         "ANNO": "2007"
       },
       {
+        "N°": 13,
+        "GIOCATORE": "ZULIAN DANIELE",
+        "ANNO": "2000"
+      },
+      {
+        "N°": 14,
+        "GIOCATORE": "BRUNELLO DEVIS",
+        "ANNO": "1998"
+      },
+      {
+        "N°": 15,
+        "GIOCATORE": "MARCHI RICCARDO",
+        "ANNO": "2007"
+      },
+      {
+        "N°": 16,
+        "GIOCATORE": "DOMENEGHETTI MARCO",
+        "ANNO": "1997"
+      },
+      {
+        "N°": 17,
+        "GIOCATORE": "MARITAN FRANCESCO",
+        "ANNO": "2005"
+      },
+      {
+        "N°": 18,
+        "GIOCATORE": "BABETTO DIEGO",
+        "ANNO": "1994"
+      },
+      {
         "N°": 19,
-        "GIOCATORE": "GHE EDORADO",
-        "ANNO": "2001"
+        "GIOCATORE": "REDI ALBERTO",
+        "ANNO": "2007"
       },
       {
         "N°": 20,
-        "GIOCATORE": "FERRARI MICHELE",
-        "ANNO": "2003"
+        "GIOCATORE": "GRADARA CARLO ALBERTO",
+        "ANNO": "2001"
       }
     ]
   },
-  "aggiornato": "2026-10-06T13:15:55+00:00"
+  "aggiornato": "2026-10-06T13:35:17+00:00"
 }
