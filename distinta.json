@@ -1,10 +1,10 @@
 {
   "info_gara": {
-    "campionato": "CAMPIONATO 1° CATEGORIA GIRONE E",
-    "data": "04/10/2026 ore 15:30",
-    "arbitro": "ELIA ABCHA sezione di TREVISO",
-    "assistente1": "TIZIANO ZONZIN",
-    "assistente2": "MADDALENA GIUSEPPE"
+    "campionato": "1ª CATEGORIA GIRONE E",
+    "data": "04/10/2026",
+    "arbitro": "",
+    "assistente1": "",
+    "assistente2": ""
   },
   "casa": {
     "squadra": "AZZURRA DUECARRARE",
@@ -134,12 +134,12 @@
       {
         "N°": 4,
         "GIOCATORE": "BERSAN MARCO (VC)",
-        "ANNO": "1997"
+        "ANNO": "2001"
       },
       {
         "N°": 5,
         "GIOCATORE": "GHIGI FILIPPO",
-        "ANNO": "2003"
+        "ANNO": "2004"
       },
       {
         "N°": 6,
@@ -159,7 +159,7 @@
       {
         "N°": 9,
         "GIOCATORE": "CANALINE ANDREA",
-        "ANNO": "1997"
+        "ANNO": "1996"
       },
       {
         "N°": 10,
@@ -173,8 +173,8 @@
       },
       {
         "N°": 12,
-        "GIOCATORE": "PIGHETTIN FEDERICO",
-        "ANNO": "1994"
+        "GIOCATORE": "PIGHETTINNI FEDERICO",
+        "ANNO": "1996"
       },
       {
         "N°": 13,
@@ -204,7 +204,7 @@
       {
         "N°": 18,
         "GIOCATORE": "ZONTA ANDREA",
-        "ANNO": "2002"
+        "ANNO": "2004"
       },
       {
         "N°": 19,
@@ -218,5 +218,5 @@
       }
     ]
   },
-  "aggiornato": "2026-10-06T14:41:39+00:00"
+  "aggiornato": "2026-10-06T15:13:54+00:00"
 }
