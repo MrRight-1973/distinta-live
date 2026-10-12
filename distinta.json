@@ -1,114 +1,114 @@
 {
   "info_gara": {
     "campionato": "PRIMA CATEGORIA GIRONE E",
-    "data": "20/09/2026",
-    "arbitro": "",
-    "assistente1": "MARCHI DANIELE",
-    "assistente2": "ZONZIN TIZIANO"
+    "data": "11/10/2026 ore 15:30",
+    "arbitro": "FERRARI SAMUELE (BASSANO DEL GRAPPA)",
+    "assistente1": "ROSSI MAURO",
+    "assistente2": "MUNEGATO FABIO"
   },
   "casa": {
-    "squadra": "A.S.D. AZZURRA DUE CARRARE",
-    "allenatore": "SADOCCO MARCO",
+    "squadra": "A.P. DUE STELLE A.S.D.",
+    "allenatore": "GARBIN ALESSANDRO",
     "giocatori": [
       {
         "N°": 1,
-        "GIOCATORE": "CHERUBIN LUCA",
-        "ANNO": "2004"
+        "GIOCATORE": "SPINELLO LEONARDO",
+        "ANNO": "2000"
       },
       {
         "N°": 2,
-        "GIOCATORE": "ROSSI ANDREA",
+        "GIOCATORE": "BOAGA LORENZO",
         "ANNO": "2005"
       },
       {
         "N°": 3,
-        "GIOCATORE": "NESE MANUEL",
-        "ANNO": "2001"
+        "GIOCATORE": "CHIOZZOTTO ENDY (VC)",
+        "ANNO": "1996"
       },
       {
         "N°": 4,
-        "GIOCATORE": "BERGO ALEX",
-        "ANNO": "2000"
+        "GIOCATORE": "CEOLA ANDREA (C)",
+        "ANNO": "1989"
       },
       {
         "N°": 5,
-        "GIOCATORE": "RANZATO LORENZO",
-        "ANNO": "2000"
+        "GIOCATORE": "BASSAN FILIPPO",
+        "ANNO": "2003"
       },
       {
         "N°": 6,
-        "GIOCATORE": "CAMISOTTI NICOLAS",
-        "ANNO": "2002"
+        "GIOCATORE": "DALLA PIA FILIPPO",
+        "ANNO": "1998"
       },
       {
         "N°": 7,
-        "GIOCATORE": "MAZZETTO MATTEO (C)",
-        "ANNO": "1998"
+        "GIOCATORE": "PANIZZOLO MATTEO",
+        "ANNO": "2001"
       },
       {
         "N°": 8,
-        "GIOCATORE": "MORANDI ENRICO",
-        "ANNO": "1998"
-      },
-      {
-        "N°": 9,
-        "GIOCATORE": "MARINELLI LEONARDO",
-        "ANNO": "2004"
-      },
-      {
-        "N°": 10,
-        "GIOCATORE": "BALLARIN ALEX (VC)",
-        "ANNO": "1997"
-      },
-      {
-        "N°": 11,
-        "GIOCATORE": "SADELLAH SALAH DINE",
-        "ANNO": "1999"
-      },
-      {
-        "N°": 12,
-        "GIOCATORE": "MATTIOLI ROBERTO",
-        "ANNO": "2007"
-      },
-      {
-        "N°": 13,
-        "GIOCATORE": "ZULIAN DANIELE",
-        "ANNO": "2000"
-      },
-      {
-        "N°": 14,
-        "GIOCATORE": "BRUNELLO DEVIS",
-        "ANNO": "1998"
-      },
-      {
-        "N°": 15,
-        "GIOCATORE": "MARCHI RICCARDO",
-        "ANNO": "2007"
-      },
-      {
-        "N°": 16,
-        "GIOCATORE": "DOMENEGHETTI MARCO",
-        "ANNO": "1997"
-      },
-      {
-        "N°": 17,
-        "GIOCATORE": "MARITAN FRANCESCO",
+        "GIOCATORE": "FINESSO ALBERTO",
         "ANNO": "2005"
       },
       {
-        "N°": 18,
-        "GIOCATORE": "BABETTO DIEGO",
+        "N°": 9,
+        "GIOCATORE": "MORESSA NICOLA",
+        "ANNO": "2003"
+      },
+      {
+        "N°": 10,
+        "GIOCATORE": "AFFAN SALIM",
         "ANNO": "1994"
       },
       {
-        "N°": 19,
-        "GIOCATORE": "REDI ALBERTO",
+        "N°": 11,
+        "GIOCATORE": "ZAMBERLAN DANIELE",
+        "ANNO": "2001"
+      },
+      {
+        "N°": 12,
+        "GIOCATORE": "SIMONI ALBERTO",
+        "ANNO": "2004"
+      },
+      {
+        "N°": 13,
+        "GIOCATORE": "BUSO FILIPPO",
+        "ANNO": "2004"
+      },
+      {
+        "N°": 14,
+        "GIOCATORE": "MINOTTO NICOLA",
+        "ANNO": "1993"
+      },
+      {
+        "N°": 15,
+        "GIOCATORE": "MARIN DANIELE",
+        "ANNO": "2004"
+      },
+      {
+        "N°": 16,
+        "GIOCATORE": "FRISON GIULIO",
+        "ANNO": "1991"
+      },
+      {
+        "N°": 17,
+        "GIOCATORE": "OMAR RICCARDO",
+        "ANNO": "2003"
+      },
+      {
+        "N°": 18,
+        "GIOCATORE": "BOZZATO DAVIDE",
         "ANNO": "2007"
       },
       {
+        "N°": 19,
+        "GIOCATORE": "PANIZZOLO JACOPO",
+        "ANNO": "1995"
+      },
+      {
         "N°": 20,
-        "GIOCATORE": "GRADARA CARLO ALBERTO",
-        "ANNO": "2001"
+        "GIOCATORE": "TAMIAZZO DAVIDE",
+        "ANNO": "1999"
       }
     ]
   },
@@ -119,17 +119,17 @@
       {
         "N°": 1,
         "GIOCATORE": "VENTURINI LEONARDO",
-        "ANNO": "2005"
+        "ANNO": "2006"
       },
       {
         "N°": 2,
-        "GIOCATORE": "ZONZIN SEBASTIANO",
-        "ANNO": "2003"
+        "GIOCATORE": "LOVISON RICCARDO",
+        "ANNO": "2007"
       },
       {
         "N°": 3,
-        "GIOCATORE": "PAVAN MARCO (VC)",
-        "ANNO": "2002"
+        "GIOCATORE": "BOSCAIN TOMMASO",
+        "ANNO": "2003"
       },
       {
         "N°": 4,
@@ -138,13 +138,13 @@
       },
       {
         "N°": 5,
-        "GIOCATORE": "PACCAGNELLA FRANCESCO",
-        "ANNO": "2002"
+        "GIOCATORE": "ZONZIN SEBASTIANO (VC)",
+        "ANNO": "2003"
       },
       {
         "N°": 6,
-        "GIOCATORE": "ZOMPA ALESSIO",
-        "ANNO": "1992"
+        "GIOCATORE": "AGGIO KEVIN (C)",
+        "ANNO": "2002"
       },
       {
         "N°": 7,
@@ -153,18 +153,18 @@
       },
       {
         "N°": 8,
-        "GIOCATORE": "AGGIO KEVIN (C)",
-        "ANNO": "2002"
+        "GIOCATORE": "BOSCARO TOMMASO",
+        "ANNO": "2001"
       },
       {
         "N°": 9,
-        "GIOCATORE": "PIVA ANDERSON",
-        "ANNO": "1994"
+        "GIOCATORE": "TACCHIN PIETRO",
+        "ANNO": "2007"
       },
       {
         "N°": 10,
-        "GIOCATORE": "CORASANITI PIETRO",
-        "ANNO": "1995"
+        "GIOCATORE": "PACCAGNELLA ANTONIO",
+        "ANNO": "2007"
       },
       {
         "N°": 11,
@@ -174,32 +174,32 @@
       {
         "N°": 12,
         "GIOCATORE": "BELLAMIO ANDREA",
-        "ANNO": "1997"
+        "ANNO": "1991"
       },
       {
         "N°": 13,
-        "GIOCATORE": "BERGAMASCO ANDREA",
-        "ANNO": "1999"
+        "GIOCATORE": "ZATTA ALESSANDRO",
+        "ANNO": "2001"
       },
       {
         "N°": 14,
-        "GIOCATORE": "CHECCHINATO RICCARDO",
+        "GIOCATORE": "MIAZZI NICOLO",
         "ANNO": "2007"
       },
       {
         "N°": 15,
-        "GIOCATORE": "BOSCAIN TOMMASO",
-        "ANNO": "2004"
+        "GIOCATORE": "CHECCHINATO RICCARDO",
+        "ANNO": "2007"
       },
       {
         "N°": 16,
-        "GIOCATORE": "BOSCARO TOMMASO",
-        "ANNO": "2001"
+        "GIOCATORE": "GIUSTO MANUEL",
+        "ANNO": "2005"
       },
       {
         "N°": 17,
-        "GIOCATORE": "PACCAGNELLA ANTONIO",
-        "ANNO": "2003"
+        "GIOCATORE": "CORASANITI PIETRO",
+        "ANNO": "2005"
       },
       {
         "N°": 18,
@@ -208,15 +208,15 @@
       },
       {
         "N°": 19,
-        "GIOCATORE": "ALBERTIN FRANCESCO",
-        "ANNO": "2005"
+        "GIOCATORE": "MORELLO GIOVANNI",
+        "ANNO": "2009"
       },
       {
         "N°": 20,
-        "GIOCATORE": "TACCHIN PIETRO",
-        "ANNO": "2007"
+        "GIOCATORE": "ALBERTIN FRANCESCO",
+        "ANNO": "2005"
       }
     ]
   },
-  "aggiornato": "2026-10-12T11:52:45+00:00"
+  "aggiornato": "2026-10-12T12:43:28+00:00"
 }
