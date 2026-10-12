@@ -224,7 +224,7 @@
       const d = await r.json();
       const voci = (d.sponsor || []).filter(function (v) {
         return v && /^[A-Za-z0-9_.\-]+$/.test(String(v.file || ""));
-      }).slice(0, 10);
+      }).slice(0, 15);  // stesso limite dell'app (MAX_SPONSOR)
       const firma = voci.map(function (v) { return v.file; }).join("|");
       if (firma === firmaSponsor) return;          // niente cambiato: non ridisegno
       firmaSponsor = firma;
