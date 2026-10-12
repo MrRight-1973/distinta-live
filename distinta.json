@@ -1,12 +1,118 @@
 {
   "info_gara": {
-    "campionato": "CAMPIONATO I° CATEGORIA GIRONE E",
+    "campionato": "PRIMA CATEGORIA GIRONE E",
     "data": "20/09/2026",
     "arbitro": "",
-    "assistente1": "ZONZIN TIZIANO",
-    "assistente2": "MARCHI DANIELE"
+    "assistente1": "MARCHI DANIELE",
+    "assistente2": "ZONZIN TIZIANO"
   },
   "casa": {
+    "squadra": "A.S.D. AZZURRA DUE CARRARE",
+    "allenatore": "SADOCCO MARCO",
+    "giocatori": [
+      {
+        "N°": 1,
+        "GIOCATORE": "CHERUBIN LUCA",
+        "ANNO": "2004"
+      },
+      {
+        "N°": 2,
+        "GIOCATORE": "ROSSI ANDREA",
+        "ANNO": "2005"
+      },
+      {
+        "N°": 3,
+        "GIOCATORE": "NESE MANUEL",
+        "ANNO": "2001"
+      },
+      {
+        "N°": 4,
+        "GIOCATORE": "BERGO ALEX",
+        "ANNO": "2000"
+      },
+      {
+        "N°": 5,
+        "GIOCATORE": "RANZATO LORENZO",
+        "ANNO": "2000"
+      },
+      {
+        "N°": 6,
+        "GIOCATORE": "CAMISOTTI NICOLAS",
+        "ANNO": "2002"
+      },
+      {
+        "N°": 7,
+        "GIOCATORE": "MAZZETTO MATTEO (C)",
+        "ANNO": "1998"
+      },
+      {
+        "N°": 8,
+        "GIOCATORE": "MORANDI ENRICO",
+        "ANNO": "1998"
+      },
+      {
+        "N°": 9,
+        "GIOCATORE": "MARINELLI LEONARDO",
+        "ANNO": "2004"
+      },
+      {
+        "N°": 10,
+        "GIOCATORE": "BALLARIN ALEX (VC)",
+        "ANNO": "1997"
+      },
+      {
+        "N°": 11,
+        "GIOCATORE": "SADELLAH SALAH DINE",
+        "ANNO": "1999"
+      },
+      {
+        "N°": 12,
+        "GIOCATORE": "MATTIOLI ROBERTO",
+        "ANNO": "2007"
+      },
+      {
+        "N°": 13,
+        "GIOCATORE": "ZULIAN DANIELE",
+        "ANNO": "2000"
+      },
+      {
+        "N°": 14,
+        "GIOCATORE": "BRUNELLO DEVIS",
+        "ANNO": "1998"
+      },
+      {
+        "N°": 15,
+        "GIOCATORE": "MARCHI RICCARDO",
+        "ANNO": "2007"
+      },
+      {
+        "N°": 16,
+        "GIOCATORE": "DOMENEGHETTI MARCO",
+        "ANNO": "1997"
+      },
+      {
+        "N°": 17,
+        "GIOCATORE": "MARITAN FRANCESCO",
+        "ANNO": "2005"
+      },
+      {
+        "N°": 18,
+        "GIOCATORE": "BABETTO DIEGO",
+        "ANNO": "1994"
+      },
+      {
+        "N°": 19,
+        "GIOCATORE": "REDI ALBERTO",
+        "ANNO": "2007"
+      },
+      {
+        "N°": 20,
+        "GIOCATORE": "GRADARA CARLO ALBERTO",
+        "ANNO": "2001"
+      }
+    ]
+  },
+  "ospite": {
     "squadra": "AZZURRA DUECARRARE",
     "allenatore": "PETRACIN ALESSANDRO",
     "giocatori": [
@@ -112,111 +218,5 @@
       }
     ]
   },
-  "ospite": {
-    "squadra": "A.S.D. PETTORAZZA SAN MARTINO",
-    "allenatore": "SADOCCO MARCO",
-    "giocatori": [
-      {
-        "N°": 1,
-        "GIOCATORE": "CHERUBIN LUCA",
-        "ANNO": "2004"
-      },
-      {
-        "N°": 2,
-        "GIOCATORE": "ROSSI ANDREA",
-        "ANNO": "2005"
-      },
-      {
-        "N°": 3,
-        "GIOCATORE": "NESE MANUEL",
-        "ANNO": "2009"
-      },
-      {
-        "N°": 4,
-        "GIOCATORE": "BERGO ALEX",
-        "ANNO": "2000"
-      },
-      {
-        "N°": 5,
-        "GIOCATORE": "RANZATO LORENZO",
-        "ANNO": "2004"
-      },
-      {
-        "N°": 6,
-        "GIOCATORE": "CAMISOTTI NICOLAS",
-        "ANNO": "2002"
-      },
-      {
-        "N°": 7,
-        "GIOCATORE": "MAZZETTO MATTEO (C)",
-        "ANNO": "1998"
-      },
-      {
-        "N°": 8,
-        "GIOCATORE": "MORANDI ENRICO",
-        "ANNO": "1998"
-      },
-      {
-        "N°": 9,
-        "GIOCATORE": "MARINELLI LEONARDO",
-        "ANNO": "2004"
-      },
-      {
-        "N°": 10,
-        "GIOCATORE": "BALLARIN ALEX (VC)",
-        "ANNO": "1997"
-      },
-      {
-        "N°": 11,
-        "GIOCATORE": "SADELLAH SALAH DINE",
-        "ANNO": "1999"
-      },
-      {
-        "N°": 12,
-        "GIOCATORE": "MATTIOLI ROBERTO",
-        "ANNO": "2007"
-      },
-      {
-        "N°": 13,
-        "GIOCATORE": "ZULIAN DANIELE",
-        "ANNO": "2000"
-      },
-      {
-        "N°": 14,
-        "GIOCATORE": "BRUNELLO DEVIS",
-        "ANNO": "1998"
-      },
-      {
-        "N°": 15,
-        "GIOCATORE": "MARCHI RICCARDO",
-        "ANNO": "2007"
-      },
-      {
-        "N°": 16,
-        "GIOCATORE": "DOMENEGHETTI MARCO",
-        "ANNO": "1997"
-      },
-      {
-        "N°": 17,
-        "GIOCATORE": "MARITAN FRANCESCO",
-        "ANNO": "2005"
-      },
-      {
-        "N°": 18,
-        "GIOCATORE": "BABETTO DIEGO",
-        "ANNO": "1994"
-      },
-      {
-        "N°": 19,
-        "GIOCATORE": "REDI ALBERTO",
-        "ANNO": "2007"
-      },
-      {
-        "N°": 20,
-        "GIOCATORE": "GRADARA CARLO ALBERTO",
-        "ANNO": "2001"
-      }
-    ]
-  },
-  "aggiornato": "2026-10-12T11:39:45+00:00"
+  "aggiornato": "2026-10-12T11:52:45+00:00"
 }
