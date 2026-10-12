@@ -56,6 +56,8 @@
 
   .messaggio { background: #fff; border-radius: 10px; padding: 18px; text-align: center; color: var(--testo-chiaro); box-shadow: 0 4px 6px rgba(0,0,0,.05); }
   .messaggio strong { display: block; color: var(--blu-scuro); margin-bottom: 6px; }
+  .messaggio.attesa { padding: 32px 18px; font-size: 15px; }
+  .messaggio.attesa strong { font-size: 18px; margin-bottom: 10px; }
   .avviso { text-align: center; font-size: 12px; color: #B7791F; margin-bottom: 10px; }
 
   .sponsor { margin-top: 24px; border-top: 1px dashed #CBD5E0; padding-top: 14px; }
@@ -187,12 +189,28 @@
     piede.textContent = "Aggiornamento automatico ogni 30 secondi" + (ora ? " · ultima distinta delle " + ora : "");
   }
 
+  function attesa(d) {
+    const box = messaggio(
+      "⏳ IN ATTESA DELLA PROSSIMA PARTITA",
+      "La partita precedente è conclusa. Le distinte della prossima gara saranno pubblicate qui " +
+      "appena disponibili: la pagina si aggiorna da sola."
+    );
+    box.classList.add("attesa");
+    contenuto.replaceChildren(box);
+    piede.textContent = "Aggiornamento automatico ogni 30 secondi";
+  }
+
   async function carica() {
     try {
       // il parametro ts evita copie vecchie in cache
       const r = await fetch("distinta.json?ts=" + Date.now(), { cache: "no-store" });
       if (!r.ok) throw new Error("HTTP " + r.status);
       const d = await r.json();
+      if (d && d.stato === "in_attesa") {  // partita archiviata: si aspetta la prossima
+        attesa(d);
+        haDati = true;
+        return;
+      }
       if (!d || !d.casa || !d.ospite) throw new Error("formato non valido");
       disegna(d);
       haDati = true;
