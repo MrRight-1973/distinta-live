@@ -1,9 +1,9 @@
 {
   "info_gara": {
-    "campionato": "CAMPIONATO 1° CATEGORIA GIRONE E",
-    "data": "27/09/2026",
+    "campionato": "CAMPIONATO I° CATEGORIA GIRONE E",
+    "data": "20/09/2026",
     "arbitro": "",
-    "assistente1": "MUNEGATO FABIO",
+    "assistente1": "ZONZIN TIZIANO",
     "assistente2": "MARCHI DANIELE"
   },
   "casa": {
@@ -17,13 +17,13 @@
       },
       {
         "N°": 2,
-        "GIOCATORE": "ZONZIN SEBASTIANO (VC)",
+        "GIOCATORE": "ZONZIN SEBASTIANO",
         "ANNO": "2003"
       },
       {
         "N°": 3,
-        "GIOCATORE": "BOSCAIN TOMMASO",
-        "ANNO": "2003"
+        "GIOCATORE": "PAVAN MARCO (VC)",
+        "ANNO": "2002"
       },
       {
         "N°": 4,
@@ -33,7 +33,7 @@
       {
         "N°": 5,
         "GIOCATORE": "PACCAGNELLA FRANCESCO",
-        "ANNO": "2000"
+        "ANNO": "2002"
       },
       {
         "N°": 6,
@@ -52,38 +52,38 @@
       },
       {
         "N°": 9,
-        "GIOCATORE": "CORASANITI PIETRO",
-        "ANNO": "2005"
+        "GIOCATORE": "PIVA ANDERSON",
+        "ANNO": "1994"
       },
       {
         "N°": 10,
-        "GIOCATORE": "ZECCHINATO RICCARDO",
-        "ANNO": "1993"
+        "GIOCATORE": "CORASANITI PIETRO",
+        "ANNO": "1995"
       },
       {
         "N°": 11,
-        "GIOCATORE": "CORREZOLA ALBERTO",
-        "ANNO": "1987"
+        "GIOCATORE": "CORREZZOLA ALBERTO",
+        "ANNO": "1992"
       },
       {
         "N°": 12,
         "GIOCATORE": "BELLAMIO ANDREA",
-        "ANNO": "1991"
-      },
-      {
-        "N°": 13,
-        "GIOCATORE": "CONDINO SAMUEL",
         "ANNO": "1997"
       },
       {
-        "N°": 14,
+        "N°": 13,
         "GIOCATORE": "BERGAMASCO ANDREA",
         "ANNO": "1999"
       },
       {
-        "N°": 15,
+        "N°": 14,
         "GIOCATORE": "CHECCHINATO RICCARDO",
         "ANNO": "2007"
+      },
+      {
+        "N°": 15,
+        "GIOCATORE": "BOSCAIN TOMMASO",
+        "ANNO": "2004"
       },
       {
         "N°": 16,
@@ -93,7 +93,7 @@
       {
         "N°": 17,
         "GIOCATORE": "PACCAGNELLA ANTONIO",
-        "ANNO": "2007"
+        "ANNO": "2003"
       },
       {
         "N°": 18,
@@ -102,13 +102,13 @@
       },
       {
         "N°": 19,
-        "GIOCATORE": "TACCHIN PIETRO",
-        "ANNO": "2007"
+        "GIOCATORE": "ALBERTIN FRANCESCO",
+        "ANNO": "2005"
       },
       {
         "N°": 20,
-        "GIOCATORE": "GIUSTO MANUEL",
-        "ANNO": "2005"
+        "GIOCATORE": "TACCHIN PIETRO",
+        "ANNO": "2007"
       }
     ]
   },
@@ -154,7 +154,7 @@
       {
         "N°": 8,
         "GIOCATORE": "MORANDI ENRICO",
-        "ANNO": "2008"
+        "ANNO": "1998"
       },
       {
         "N°": 9,
@@ -218,5 +218,5 @@
       }
     ]
   },
-  "aggiornato": "2026-10-12T11:27:29+00:00"
+  "aggiornato": "2026-10-12T11:39:45+00:00"
 }
