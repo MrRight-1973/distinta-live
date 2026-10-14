@@ -160,7 +160,9 @@
     const frag = document.createDocumentFragment();
 
     const box = el("div", "info-match");
-    if (info.campionato) box.appendChild(el("div", null, "🏆 " + info.campionato));
+    const giornata = parseInt(info.giornata, 10);
+    const campionato = [info.campionato, giornata > 0 ? giornata + "ª giornata" : ""].filter(Boolean).join(" · ");
+    if (campionato) box.appendChild(el("div", null, "🏆 " + campionato));
     if (info.data) box.appendChild(el("div", null, "📅 " + info.data));
     if (info.arbitro) {
       const r = el("div", null);
