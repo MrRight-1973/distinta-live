@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1A365D">
+<title>Distinta Digitale Live - Azzurra Due Carrare</title>
+<link rel="icon" href="logo.png">
+<style>
+  :root {
+    --blu-scuro: #1A365D;
+    --blu: #2B6CB0;
+    --azzurro: #E2E8F0;
+    --sfondo: #F0F4F8;
+    --testo: #2D3748;
+    --testo-chiaro: #4A5568;
+    --grigio: #A0AEC0;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--sfondo);
+    color: var(--testo);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.35;
+  }
+  .contenitore { max-width: 700px; margin: 0 auto; padding: 16px 16px 40px; }
+
+  header { text-align: center; padding: 8px 0 4px; }
+  header img { height: 72px; width: auto; display: block; margin: 0 auto 8px; }
+  .titolo { color: var(--blu-scuro); font-size: 24px; font-weight: 700; margin: 0; }
+  .sottotitolo { color: var(--blu); font-size: 18px; font-weight: 700; margin: 2px 0 0; }
+
+  .info-match { text-align: center; color: var(--testo-chiaro); font-size: 14px; margin: 14px 0 16px; }
+  .icona { width: 1.15em; height: 1.15em; vertical-align: -0.2em; }
+  .info-match div + div { margin-top: 2px; }
+
+  .btn-pdf {
+    display: block; width: 100%; text-align: center; text-decoration: none;
+    background: var(--blu-scuro); color: #fff; font-weight: 700; font-size: 16px;
+    padding: 14px 16px; border-radius: 10px; margin-bottom: 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,.08);
+  }
+  .btn-pdf:active { background: var(--blu); }
+
+  .card { background: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,.05); margin-bottom: 15px; }
+  .nome-squadra { color: var(--blu); font-size: 18px; font-weight: 700; border-bottom: 2px solid var(--azzurro); padding-bottom: 5px; margin-bottom: 10px; }
+  .allenatore { font-style: italic; color: var(--testo-chiaro); font-size: 13px; margin-bottom: 10px; }
+  .riga { display: flex; align-items: baseline; padding: 6px 0; border-bottom: 1px solid #EDF2F7; font-size: 15px; }
+  .riga:last-child { border-bottom: 0; }
+  .num { font-weight: 700; color: var(--blu); width: 28px; flex: none; }
+  .nome { flex: 1; padding-left: 5px; min-width: 0; overflow-wrap: anywhere; }
+  .anno { color: var(--grigio); width: 44px; text-align: right; flex: none; }
+
+  .messaggio { background: #fff; border-radius: 10px; padding: 18px; text-align: center; color: var(--testo-chiaro); box-shadow: 0 4px 6px rgba(0,0,0,.05); }
+  .messaggio strong { display: block; color: var(--blu-scuro); margin-bottom: 6px; }
+  .messaggio.attesa { padding: 32px 18px; font-size: 15px; }
+  .messaggio.attesa strong { font-size: 18px; margin-bottom: 10px; }
+  .avviso { text-align: center; font-size: 12px; color: #B7791F; margin-bottom: 10px; }
+
+  .sponsor { margin-top: 24px; border-top: 1px dashed #CBD5E0; padding-top: 14px; }
+  .sponsor h2 { text-align: center; font-size: 12px; letter-spacing: .08em; color: var(--testo-chiaro); margin: 0 0 10px; }
+  .griglia-sponsor { display: flex; flex-direction: column; gap: 8px; }
+  .riga-sponsor { display: flex; justify-content: center; gap: 8px; }
+  .griglia-sponsor .cella { background: #fff; border-radius: 8px; height: 64px; width: calc((100% - 16px) / 3);
+    display: flex; align-items: center; justify-content: center; padding: 6px; }
+  .griglia-sponsor img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+
+  .diretta { background: #fff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,.05); margin-bottom: 16px; overflow: hidden; }
+  .tabellone { background: var(--blu-scuro); color: #fff; padding: 12px 14px 10px; text-align: center; }
+  .stato { font-size: 13px; letter-spacing: .03em; opacity: .9; margin-bottom: 6px; }
+  .stato .punto { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #48BB78; margin-right: 6px;
+    vertical-align: 1px; animation: pulsa 1.6s infinite; }
+  @keyframes pulsa { 50% { opacity: .25; } }
+  .risultato { display: flex; align-items: center; justify-content: center; gap: 10px; }
+  .risultato .sq { flex: 1; font-weight: 700; font-size: 15px; line-height: 1.2; overflow-wrap: anywhere; }
+  .risultato .sq.casa { text-align: right; }
+  .risultato .sq.ospite { text-align: left; }
+  .risultato .gol { font-size: 34px; font-weight: 800; min-width: 92px; font-variant-numeric: tabular-nums; }
+  .eventi { padding: 4px 14px 8px; }
+  /* Eventi in tre colonne, sotto le squadre del tabellone: casa | minuto | ospite */
+  .evento { display: grid; grid-template-columns: 1fr 52px 1fr; align-items: center; padding: 7px 0;
+    border-bottom: 1px solid #EDF2F7; font-size: 14px; line-height: 1.25; }
+  .evento:last-child { border-bottom: 0; }
+  .evento .min { text-align: center; font-weight: 700; color: var(--blu); font-variant-numeric: tabular-nums; }
+  .evento .lato { display: flex; align-items: center; gap: 6px; min-width: 0; }
+  .evento .lato.casa { justify-content: flex-end; text-align: right; }
+  .evento .lato.ospite { justify-content: flex-start; text-align: left; }
+  .evento .ico { flex: none; }
+  .evento .chi { min-width: 0; overflow-wrap: anywhere; }
+  .evento .nota { color: var(--testo-chiaro); font-size: 12px; }
+  .evento .riga-cambio { display: block; }
+  .evento .entra::before { content: "▲ "; color: #38A169; font-size: 10px; }
+  .evento .esce { color: var(--testo-chiaro); }
+  .evento .esce::before { content: "▼ "; color: #E53E3E; font-size: 10px; }
+  .nessun-evento { color: var(--testo-chiaro); font-size: 13px; text-align: center; padding: 10px 0; }
+
+  footer { text-align: center; color: var(--grigio); font-size: 12px; margin-top: 22px; }
+</style>
+</head>
+<body>
+<div class="contenitore">
+  <header>
+    <img src="logo.png" alt="A.S.D. Azzurra Due Carrare">
+    <h1 class="titolo">AZZURRA DUE CARRARE</h1>
+    <p class="sottotitolo">DISTINTA DIGITALE LIVE</p>
+  </header>
+
+  <main id="contenuto">
+    <div class="messaggio"><strong>Caricamento…</strong></div>
+  </main>
+
+  <section class="sponsor" id="sponsor" hidden>
+    <h2>I NOSTRI SPONSOR</h2>
+    <div class="griglia-sponsor" id="griglia-sponsor"></div>
+  </section>
+
+  <footer id="piede"></footer>
+</div>
+
+<script>
+  // ---- Impostazioni ------------------------------------------------------
+  const INTERVALLO_MS = 30000;   // ogni quanto la pagina rilegge la distinta
+  const INTERVALLO_DIRETTA_MS = 15000;  // ogni quanto rilegge risultato ed eventi
+  // ---- Utilità: tutto il testo passa da textContent (mai da innerHTML) ----
+  function el(tag, classe, testo) {
+    const e = document.createElement(tag);
+    if (classe) e.className = classe;
+    if (testo !== undefined && testo !== null) e.textContent = String(testo);
+    return e;
+  }
+
+  const contenuto = document.getElementById("contenuto");
+  const piede = document.getElementById("piede");
+  let haDati = false;
+
+  function messaggio(titolo, testo) {
+    const box = el("div", "messaggio");
+    box.appendChild(el("strong", null, titolo));
+    box.appendChild(document.createTextNode(testo));
+    return box;
+  }
+
+  function cardSquadra(dati, titoloDefault) {
+    dati = dati || {};
+    const card = el("div", "card");
+    card.appendChild(el("div", "nome-squadra", dati.squadra || titoloDefault));
+    if (dati.allenatore) card.appendChild(el("div", "allenatore", "All. " + dati.allenatore));
+    (dati.giocatori || []).forEach(function (g) {
+      const nome = String((g && g.GIOCATORE) || "").trim();
+      if (!nome) return;
+      const riga = el("div", "riga");
+      riga.appendChild(el("span", "num", g["N°"]));
+      riga.appendChild(el("span", "nome", nome));
+      riga.appendChild(el("span", "anno", g.ANNO));
+      card.appendChild(riga);
+    });
+    return card;
+  }
+
+  function formattaOra(iso) {
+    const d = new Date(iso);
+    if (isNaN(d)) return "";
+    return d.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" });
+  }
+
+  // Non esiste un emoji "fischietto": lo disegno come piccola icona SVG
+  function fischietto() {
+    const NS = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", "0 0 24 24");
+    svg.setAttribute("class", "icona");
+    svg.setAttribute("aria-hidden", "true");
+    [["circle", { cx: 15, cy: 14, r: 6.5, fill: "#4A5568" }],
+     ["rect", { x: 1.5, y: 8.5, width: 12, height: 5, rx: 1.5, fill: "#4A5568" }],
+     ["circle", { cx: 15, cy: 14, r: 2.2, fill: "#fff" }],
+     ["circle", { cx: 15, cy: 6.2, r: 2, fill: "none", stroke: "#4A5568", "stroke-width": 1.6 }]
+    ].forEach(function (x) {
+      const e = document.createElementNS(NS, x[0]);
+      for (const k in x[1]) e.setAttribute(k, x[1][k]);
+      svg.appendChild(e);
+    });
+    return svg;
+  }
+
+  function disegna(d) {
+    const info = d.info_gara || {};
+    const frag = document.createDocumentFragment();
+
+    const box = el("div", "info-match");
+    const giornata = parseInt(info.giornata, 10);
+    const campionato = [info.campionato, giornata > 0 ? giornata + "ª giornata" : ""].filter(Boolean).join(" · ");
+    if (campionato) box.appendChild(el("div", null, "🏆 " + campionato));
+    if (info.data) box.appendChild(el("div", null, "📅 " + info.data));
+    if (info.arbitro) {
+      const r = el("div", null);
+      r.appendChild(fischietto());
+      r.appendChild(document.createTextNode(" Arbitro: " + info.arbitro));
+      box.appendChild(r);
+    }
+    const guardalinee = [info.assistente1, info.assistente2]
+      .map(function (n) { return String(n || "").trim(); })
+      .filter(Boolean);
+    if (guardalinee.length) {
+      box.appendChild(el("div", null, guardalinee.map(function (n) { return "🚩 " + n; }).join("   ")));
+    }
+    frag.appendChild(box);
+
+    const diretta = el("div", "diretta");
+    diretta.id = "diretta";
+    diretta.hidden = true;
+    frag.appendChild(diretta);
+
+    const pdf = el("a", "btn-pdf", "📄 SCARICA LA DISTINTA (PDF)");
+    pdf.href = "distinta.pdf?v=" + encodeURIComponent(d.aggiornato || Date.now());
+    pdf.setAttribute("download", "distinta_ufficiale_A4.pdf");
+    frag.appendChild(pdf);
+
+    frag.appendChild(cardSquadra(d.casa, "SQUADRA CASA"));
+    frag.appendChild(cardSquadra(d.ospite, "SQUADRA OSPITE"));
+
+    contenuto.replaceChildren(frag);
+    distintaAttuale = d;
+    disegnaDiretta();
+    const ora = formattaOra(d.aggiornato);
+    piede.textContent = "Aggiornamento automatico ogni 30 secondi" + (ora ? " · ultima distinta delle " + ora : "");
+  }
+
+  function attesa(d) {
+    const box = messaggio(
+      "⏳ IN ATTESA DELLA PROSSIMA PARTITA",
+      "La partita precedente è conclusa. Le distinte della prossima gara saranno pubblicate qui " +
+      "appena disponibili: la pagina si aggiorna da sola."
+    );
+    box.classList.add("attesa");
+    contenuto.replaceChildren(box);
+    piede.textContent = "Aggiornamento automatico ogni 30 secondi";
+  }
+
+  async function carica() {
+    try {
+      // il parametro ts evita copie vecchie in cache
+      const r = await fetch("distinta.json?ts=" + Date.now(), { cache: "no-store" });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      const d = await r.json();
+      if (d && d.stato === "in_attesa") {  // partita archiviata: si aspetta la prossima
+        distintaAttuale = null;
+        attesa(d);
+        haDati = true;
+        return;
+      }
+      if (!d || !d.casa || !d.ospite) throw new Error("formato non valido");
+      disegna(d);
+      haDati = true;
+    } catch (e) {
+      if (!haDati) {
+        contenuto.replaceChildren(messaggio(
+          "⌛ DISTINTA IN AGGIORNAMENTO",
+          "La segreteria sta caricando le distinte ufficiali. La pagina si aggiorna da sola."
+        ));
+      } else {
+        // segnale debole: si lasciano a schermo gli ultimi dati letti
+        piede.textContent = "Connessione assente: mostrati gli ultimi dati ricevuti. Riprovo tra poco…";
+      }
+    }
+  }
+
+
+  // ---- Diretta: risultato, tempo di gioco ed eventi scritti dalla segreteria in Cronaca ----
+  let distintaAttuale = null, ultimaDiretta = null;
+  const ICONE = { gol: "⚽", ammonizione: "🟨", espulsione: "🟥", sostituzione: "🔄" };
+
+  function minutoDiGioco(l) {
+    if (!l.inizio) return "";
+    const durata = parseInt(l.durata, 10) || 45;
+    const offset = l.fase === "secondo" ? durata : 0;
+    const trascorsi = Math.max(0, Math.floor((Date.now() / 1000 - l.inizio) / 60)) + 1;
+    return trascorsi > durata ? (offset + durata) + "+" + (trascorsi - durata) + "'" : (offset + trascorsi) + "'";
+  }
+
+  function numeroMinuto(m) {
+    const n = String(m || "").match(/\d+/g);
+    return n ? parseInt(n[0], 10) + (n[1] ? parseInt(n[1], 10) / 100 : 0) : 0;
+  }
+
+  function disegnaDiretta() {
+    const box = document.getElementById("diretta");
+    if (!box) return;
+    const d = distintaAttuale, l = ultimaDiretta;
+    const valida = d && l && l.distinta && l.distinta === d.aggiornato;
+    const eventi = valida ? (l.eventi || []) : [];
+    if (!valida || (l.stato === "prepartita" && !eventi.length)) { box.hidden = true; return; }
+
+    const tab = el("div", "tabellone");
+    const stato = el("div", "stato");
+    const testi = { primo: "1° TEMPO", secondo: "2° TEMPO", intervallo: "⏸️ INTERVALLO", finita: "🏁 FINALE", prepartita: "PRE-GARA" };
+    if (l.stato === "primo" || l.stato === "secondo") {
+      stato.appendChild(el("span", "punto"));
+      stato.appendChild(document.createTextNode("IN DIRETTA · " + testi[l.stato] + " · " + minutoDiGioco(l)));
+    } else {
+      stato.textContent = testi[l.stato] || "";
+    }
+    tab.appendChild(stato);
+    const ris = el("div", "risultato");
+    const gol = Array.isArray(l.gol) ? l.gol : [0, 0];
+    ris.appendChild(el("div", "sq casa", (d.casa && d.casa.squadra) || "Casa"));
+    ris.appendChild(el("div", "gol", (gol[0] || 0) + " - " + (gol[1] || 0)));
+    ris.appendChild(el("div", "sq ospite", (d.ospite && d.ospite.squadra) || "Ospite"));
+    tab.appendChild(ris);
+
+    const lista = el("div", "eventi");
+    const ordinati = eventi.slice().sort(function (a, b) { return numeroMinuto(b.minuto) - numeroMinuto(a.minuto); });
+    if (!ordinati.length) lista.appendChild(el("div", "nessun-evento", "Nessun evento per ora"));
+    ordinati.forEach(function (e) {
+      if (!ICONE[e.tipo]) return;
+      const riga = el("div", "evento");
+      const casa = el("div", "lato casa"), ospite = el("div", "lato ospite");
+      const lato = e.squadra === "casa" ? casa : ospite;
+      const ico = el("span", "ico", ICONE[e.tipo]);
+      const chi = descrizioneEvento(e);
+      if (e.squadra === "casa") { lato.appendChild(chi); lato.appendChild(ico); }
+      else { lato.appendChild(ico); lato.appendChild(chi); }
+      riga.appendChild(casa);
+      riga.appendChild(el("span", "min", e.minuto || ""));
+      riga.appendChild(ospite);
+      lista.appendChild(riga);
+    });
+    box.replaceChildren(tab, lista);
+    box.hidden = false;
+  }
+
+  // Il giocatore dell'evento; la sostituzione su due righe: chi entra e chi esce
+  function descrizioneEvento(e) {
+    const chi = el("span", "chi");
+    const cambio = e.tipo === "sostituzione" && /^\s*(entra\s+(.+?))?\s*,?\s*(esce\s+(.+?))?\s*$/i.exec(e.giocatore || "");
+    if (cambio && (cambio[2] || cambio[4])) {
+      if (cambio[2]) chi.appendChild(el("span", "riga-cambio entra", cambio[2]));
+      if (cambio[4]) chi.appendChild(el("span", "riga-cambio esce", cambio[4]));
+      return chi;
+    }
+    chi.textContent = e.giocatore || (e.tipo === "gol" ? "Gol" : "");
+    if (e.nota) chi.appendChild(el("span", "nota", " (" + e.nota + ")"));
+    return chi;
+  }
+
+  async function caricaDiretta() {
+    const url = distintaAttuale && distintaAttuale.live;
+    if (!url || !/^https:\/\/[a-z0-9-]+\.supabase\.co\/storage\/v1\/object\/public\//.test(url)) return;
+    try {
+      const r = await fetch(url + "?ts=" + Date.now(), { cache: "no-store" });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      ultimaDiretta = await r.json();
+    } catch (e) {
+      // segnale debole: resta l'ultimo risultato letto
+    }
+    disegnaDiretta();
+  }
+
+  // Righe equilibrate: 10 -> 3,3,2,2   9 -> 3,3,3   7 -> 3,2,2   4 -> 2,2   (massimo 3 per riga)
+  function distribuisciRighe(n, maxColonne) {
+    const righe = Math.ceil(n / maxColonne);
+    const base = Math.floor(n / righe), extra = n % righe;
+    return Array.from({ length: righe }, function (_, i) { return i < extra ? base + 1 : base; });
+  }
+
+  let firmaSponsor = null;
+  async function caricaSponsor() {
+    try {
+      const r = await fetch("sponsor.json?ts=" + Date.now(), { cache: "no-store" });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      const d = await r.json();
+      const voci = (d.sponsor || []).filter(function (v) {
+        return v && /^[A-Za-z0-9_.\-]+$/.test(String(v.file || ""));
+      }).slice(0, 15);  // stesso limite dell'app (MAX_SPONSOR)
+      const firma = voci.map(function (v) { return v.file; }).join("|");
+      if (firma === firmaSponsor) return;          // niente cambiato: non ridisegno
+      firmaSponsor = firma;
+
+      const griglia = document.getElementById("griglia-sponsor");
+      griglia.replaceChildren();
+      let i = 0;
+      distribuisciRighe(voci.length, 3).forEach(function (quanti) {
+        const riga = el("div", "riga-sponsor");
+        voci.slice(i, i + quanti).forEach(function (v) {
+          const cella = el("div", "cella");
+          const img = document.createElement("img");
+          img.src = "sponsor/" + v.file;
+          img.alt = v.nome || "Sponsor";
+          img.loading = "lazy";
+          cella.appendChild(img);
+          riga.appendChild(cella);
+        });
+        i += quanti;
+        griglia.appendChild(riga);
+      });
+      document.getElementById("sponsor").hidden = voci.length === 0;
+    } catch (e) {
+      // elenco non disponibile: si lasciano gli sponsor già mostrati (o nessuno)
+    }
+  }
+
+  carica().then(caricaDiretta);
+  caricaSponsor();
+  setInterval(function () { carica(); caricaSponsor(); }, INTERVALLO_MS);
+  setInterval(caricaDiretta, INTERVALLO_DIRETTA_MS);
+  // al ritorno sull'app (telefono sbloccato, cambio scheda) aggiorna subito
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) { carica().then(caricaDiretta); caricaSponsor(); }
+  });
+</script>
+</body>
+</html>
