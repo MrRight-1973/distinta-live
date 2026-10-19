@@ -96,6 +96,9 @@
   .evento .entra::before { content: "▲ "; color: #38A169; font-size: 10px; }
   .evento .esce { color: var(--testo-chiaro); }
   .evento .esce::before { content: "▼ "; color: #E53E3E; font-size: 10px; }
+  .apri-eventi { display: block; width: 100%; margin: 4px 0 2px; padding: 8px; border: 1px solid #E2E8F0; border-radius: 8px;
+    background: #F7FAFC; color: var(--blu-scuro); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .apri-eventi + .evento { margin-top: 4px; }
   .nessun-evento { color: var(--testo-chiaro); font-size: 13px; text-align: center; padding: 10px 0; }
 
   footer { text-align: center; color: var(--grigio); font-size: 12px; margin-top: 22px; }
@@ -270,7 +273,7 @@
 
 
   // ---- Diretta: risultato, tempo di gioco ed eventi scritti dalla segreteria in Cronaca ----
-  let distintaAttuale = null, ultimaDiretta = null;
+  let distintaAttuale = null, ultimaDiretta = null, eventiAperti = false;
   const ICONE = { gol: "⚽", ammonizione: "🟨", espulsione: "🟥", sostituzione: "🔄" };
 
   function minutoDiGioco(l) {
@@ -311,25 +314,39 @@
     ris.appendChild(el("div", "sq ospite", (d.ospite && d.ospite.squadra) || "Ospite"));
     tab.appendChild(ris);
 
+    // Gli eventi in una tendina chiusa: si vede sempre solo l'ultimo; aperta o chiusa resta com'è tra un aggiornamento e l'altro
     const lista = el("div", "eventi");
-    const ordinati = eventi.slice().sort(function (a, b) { return numeroMinuto(b.minuto) - numeroMinuto(a.minuto); });
-    if (!ordinati.length) lista.appendChild(el("div", "nessun-evento", "Nessun evento per ora"));
-    ordinati.forEach(function (e) {
-      if (!ICONE[e.tipo]) return;
-      const riga = el("div", "evento");
-      const casa = el("div", "lato casa"), ospite = el("div", "lato ospite");
-      const lato = e.squadra === "casa" ? casa : ospite;
-      const ico = el("span", "ico", ICONE[e.tipo]);
-      const chi = descrizioneEvento(e);
-      if (e.squadra === "casa") { lato.appendChild(chi); lato.appendChild(ico); }
-      else { lato.appendChild(ico); lato.appendChild(chi); }
-      riga.appendChild(casa);
-      riga.appendChild(el("span", "min", e.minuto || ""));
-      riga.appendChild(ospite);
-      lista.appendChild(riga);
-    });
+    const ordinati = eventi.filter(function (e) { return ICONE[e.tipo]; })
+      .sort(function (a, b) { return numeroMinuto(b.minuto) - numeroMinuto(a.minuto); });
+    if (!ordinati.length) {
+      lista.appendChild(el("div", "nessun-evento", "Nessun evento per ora"));
+    } else {
+      if (!eventiAperti) lista.appendChild(rigaEvento(ordinati[0]));
+      const bottone = el("button", "apri-eventi",
+        "📋 Eventi della partita (" + ordinati.length + ") " + (eventiAperti ? "▴" : "▾"));
+      bottone.type = "button";
+      bottone.setAttribute("aria-expanded", eventiAperti ? "true" : "false");
+      bottone.addEventListener("click", function () { eventiAperti = !eventiAperti; disegnaDiretta(); });
+      lista.appendChild(bottone);
+      if (eventiAperti) ordinati.forEach(function (e) { lista.appendChild(rigaEvento(e)); });
+    }
     box.replaceChildren(tab, lista);
     box.hidden = false;
+  }
+
+  // Una riga: casa a sinistra, minuto al centro, ospite a destra
+  function rigaEvento(e) {
+    const riga = el("div", "evento");
+    const casa = el("div", "lato casa"), ospite = el("div", "lato ospite");
+    const lato = e.squadra === "casa" ? casa : ospite;
+    const ico = el("span", "ico", ICONE[e.tipo]);
+    const chi = descrizioneEvento(e);
+    if (e.squadra === "casa") { lato.appendChild(chi); lato.appendChild(ico); }
+    else { lato.appendChild(ico); lato.appendChild(chi); }
+    riga.appendChild(casa);
+    riga.appendChild(el("span", "min", e.minuto || ""));
+    riga.appendChild(ospite);
+    return riga;
   }
 
   // Il giocatore dell'evento; la sostituzione su due righe: chi entra e chi esce
