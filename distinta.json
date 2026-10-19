@@ -1,0 +1,225 @@
+{
+  "info_gara": {
+    "campionato": "TROFEO REGIONE VENETO",
+    "stagione": "2026/27",
+    "giornata": "",
+    "data": "30/08/2026 ore 16:30",
+    "arbitro": "",
+    "assistente1": "SAMBIN PAOLO",
+    "assistente2": "ZONZIN TIZIANO"
+  },
+  "casa": {
+    "squadra": "A.S.D. PETTORAZZA SAN MARTINO",
+    "allenatore": "SADOCCO MARCO",
+    "giocatori": [
+      {
+        "N°": 1,
+        "GIOCATORE": "MATTIOLI ROBERTO",
+        "ANNO": "2007"
+      },
+      {
+        "N°": 2,
+        "GIOCATORE": "GRADARA CARLO ALBERTO",
+        "ANNO": "2001"
+      },
+      {
+        "N°": 3,
+        "GIOCATORE": "ROSSI ANDREA",
+        "ANNO": "2005"
+      },
+      {
+        "N°": 4,
+        "GIOCATORE": "BERGO ALEX (VC)",
+        "ANNO": "2000"
+      },
+      {
+        "N°": 5,
+        "GIOCATORE": "CAMISOTTI NICOLAS",
+        "ANNO": "2002"
+      },
+      {
+        "N°": 6,
+        "GIOCATORE": "NESE MANUEL",
+        "ANNO": "2001"
+      },
+      {
+        "N°": 7,
+        "GIOCATORE": "MAZZETTO MATTEO (C)",
+        "ANNO": "1988"
+      },
+      {
+        "N°": 8,
+        "GIOCATORE": "BRUNELLO DEVIS",
+        "ANNO": "1998"
+      },
+      {
+        "N°": 9,
+        "GIOCATORE": "MARINELLI LEONARDO",
+        "ANNO": "2004"
+      },
+      {
+        "N°": 10,
+        "GIOCATORE": "MORANDI ENRICO",
+        "ANNO": "1998"
+      },
+      {
+        "N°": 11,
+        "GIOCATORE": "SADELLAH SALAH DINE",
+        "ANNO": "1999"
+      },
+      {
+        "N°": 12,
+        "GIOCATORE": "CHERUBIN LUCA",
+        "ANNO": "2004"
+      },
+      {
+        "N°": 13,
+        "GIOCATORE": "RANZATO LORENZO",
+        "ANNO": "2000"
+      },
+      {
+        "N°": 14,
+        "GIOCATORE": "DOMENEGHETTI MARCO",
+        "ANNO": "1997"
+      },
+      {
+        "N°": 15,
+        "GIOCATORE": "MARITAN FRANCESCO",
+        "ANNO": "2005"
+      },
+      {
+        "N°": 16,
+        "GIOCATORE": "CELIO MARCO",
+        "ANNO": "2008"
+      },
+      {
+        "N°": 17,
+        "GIOCATORE": "REDI ALBERTO",
+        "ANNO": "2007"
+      },
+      {
+        "N°": 18,
+        "GIOCATORE": "BALLARIN ALEX",
+        "ANNO": "1997"
+      },
+      {
+        "N°": 19,
+        "GIOCATORE": "GIURIOLO KIRILL",
+        "ANNO": "2009"
+      },
+      {
+        "N°": 20,
+        "GIOCATORE": "GREGAINI LEONARDO",
+        "ANNO": "2009"
+      }
+    ]
+  },
+  "ospite": {
+    "squadra": "AZZURRA DUECARRARE",
+    "allenatore": "PETRACIN ALESSANDRO",
+    "giocatori": [
+      {
+        "N°": 1,
+        "GIOCATORE": "VENTURINI LEONARDO",
+        "ANNO": "2005"
+      },
+      {
+        "N°": 2,
+        "GIOCATORE": "CHECCHINATO RICCARDO",
+        "ANNO": "2007"
+      },
+      {
+        "N°": 3,
+        "GIOCATORE": "PAVAN MARCO (VC)",
+        "ANNO": "2002"
+      },
+      {
+        "N°": 4,
+        "GIOCATORE": "MINOGLIO TOMMASO",
+        "ANNO": "1995"
+      },
+      {
+        "N°": 5,
+        "GIOCATORE": "ZONZIN SEBASTIANO",
+        "ANNO": "2003"
+      },
+      {
+        "N°": 6,
+        "GIOCATORE": "BERGAMASCO ANDREA",
+        "ANNO": "1990"
+      },
+      {
+        "N°": 7,
+        "GIOCATORE": "CACCO FILIPPO",
+        "ANNO": "2004"
+      },
+      {
+        "N°": 8,
+        "GIOCATORE": "AGGIO KEVIN (C)",
+        "ANNO": "2002"
+      },
+      {
+        "N°": 9,
+        "GIOCATORE": "TACCHIN PIETRO",
+        "ANNO": "2007"
+      },
+      {
+        "N°": 10,
+        "GIOCATORE": "CORASANITI PIETRO",
+        "ANNO": "2005"
+      },
+      {
+        "N°": 11,
+        "GIOCATORE": "CORREZZOLA ALBERTO",
+        "ANNO": "1992"
+      },
+      {
+        "N°": 12,
+        "GIOCATORE": "RAMPAZZO GABRIELE",
+        "ANNO": "2008"
+      },
+      {
+        "N°": 13,
+        "GIOCATORE": "CONDINO SAMUEL",
+        "ANNO": "1997"
+      },
+      {
+        "N°": 14,
+        "GIOCATORE": "ZOMPA ALESSIO",
+        "ANNO": "1992"
+      },
+      {
+        "N°": 15,
+        "GIOCATORE": "PACCAGNELLA ANTONIO",
+        "ANNO": "2007"
+      },
+      {
+        "N°": 16,
+        "GIOCATORE": "GIUSTO MANUEL",
+        "ANNO": "2005"
+      },
+      {
+        "N°": 17,
+        "GIOCATORE": "ZECCHINATO RICCARDO",
+        "ANNO": "1993"
+      },
+      {
+        "N°": 18,
+        "GIOCATORE": "NALIN NICHOLAS",
+        "ANNO": "2006"
+      },
+      {
+        "N°": 19,
+        "GIOCATORE": "ALBERTIN FRANCESCO",
+        "ANNO": "2005"
+      },
+      {
+        "N°": 20,
+        "GIOCATORE": "",
+        "ANNO": ""
+      }
+    ]
+  },
+  "aggiornato": "2026-10-19T12:09:53+00:00",
+  "live": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/live.json"
+}
