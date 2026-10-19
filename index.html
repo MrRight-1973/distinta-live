@@ -81,12 +81,21 @@
   .risultato .sq.ospite { text-align: left; }
   .risultato .gol { font-size: 34px; font-weight: 800; min-width: 92px; font-variant-numeric: tabular-nums; }
   .eventi { padding: 4px 14px 8px; }
-  .evento { display: flex; align-items: baseline; gap: 8px; padding: 7px 0; border-bottom: 1px solid #EDF2F7; font-size: 14px; }
+  /* Eventi in tre colonne, sotto le squadre del tabellone: casa | minuto | ospite */
+  .evento { display: grid; grid-template-columns: 1fr 52px 1fr; align-items: center; padding: 7px 0;
+    border-bottom: 1px solid #EDF2F7; font-size: 14px; line-height: 1.25; }
   .evento:last-child { border-bottom: 0; }
-  .evento .min { width: 44px; flex: none; font-weight: 700; color: var(--blu); font-variant-numeric: tabular-nums; }
-  .evento .ico { width: 20px; flex: none; text-align: center; }
-  .evento .chi { flex: 1; min-width: 0; overflow-wrap: anywhere; }
-  .evento .sqd { display: block; font-size: 12px; color: var(--testo-chiaro); }
+  .evento .min { text-align: center; font-weight: 700; color: var(--blu); font-variant-numeric: tabular-nums; }
+  .evento .lato { display: flex; align-items: center; gap: 6px; min-width: 0; }
+  .evento .lato.casa { justify-content: flex-end; text-align: right; }
+  .evento .lato.ospite { justify-content: flex-start; text-align: left; }
+  .evento .ico { flex: none; }
+  .evento .chi { min-width: 0; overflow-wrap: anywhere; }
+  .evento .nota { color: var(--testo-chiaro); font-size: 12px; }
+  .evento .riga-cambio { display: block; }
+  .evento .entra::before { content: "▲ "; color: #38A169; font-size: 10px; }
+  .evento .esce { color: var(--testo-chiaro); }
+  .evento .esce::before { content: "▼ "; color: #E53E3E; font-size: 10px; }
   .nessun-evento { color: var(--testo-chiaro); font-size: 13px; text-align: center; padding: 10px 0; }
 
   footer { text-align: center; color: var(--grigio); font-size: 12px; margin-top: 22px; }
@@ -308,16 +317,33 @@
     ordinati.forEach(function (e) {
       if (!ICONE[e.tipo]) return;
       const riga = el("div", "evento");
+      const casa = el("div", "lato casa"), ospite = el("div", "lato ospite");
+      const lato = e.squadra === "casa" ? casa : ospite;
+      const ico = el("span", "ico", ICONE[e.tipo]);
+      const chi = descrizioneEvento(e);
+      if (e.squadra === "casa") { lato.appendChild(chi); lato.appendChild(ico); }
+      else { lato.appendChild(ico); lato.appendChild(chi); }
+      riga.appendChild(casa);
       riga.appendChild(el("span", "min", e.minuto || ""));
-      riga.appendChild(el("span", "ico", ICONE[e.tipo]));
-      const chi = el("span", "chi", (e.giocatore || (e.tipo === "gol" ? "Gol" : "")) + (e.nota ? " (" + e.nota + ")" : ""));
-      const squadra = e.squadra === "casa" ? d.casa : d.ospite;
-      chi.appendChild(el("span", "sqd", (squadra && squadra.squadra) || ""));
-      riga.appendChild(chi);
+      riga.appendChild(ospite);
       lista.appendChild(riga);
     });
     box.replaceChildren(tab, lista);
     box.hidden = false;
+  }
+
+  // Il giocatore dell'evento; la sostituzione su due righe: chi entra e chi esce
+  function descrizioneEvento(e) {
+    const chi = el("span", "chi");
+    const cambio = e.tipo === "sostituzione" && /^\s*(entra\s+(.+?))?\s*,?\s*(esce\s+(.+?))?\s*$/i.exec(e.giocatore || "");
+    if (cambio && (cambio[2] || cambio[4])) {
+      if (cambio[2]) chi.appendChild(el("span", "riga-cambio entra", cambio[2]));
+      if (cambio[4]) chi.appendChild(el("span", "riga-cambio esce", cambio[4]));
+      return chi;
+    }
+    chi.textContent = e.giocatore || (e.tipo === "gol" ? "Gol" : "");
+    if (e.nota) chi.appendChild(el("span", "nota", " (" + e.nota + ")"));
+    return chi;
   }
 
   async function caricaDiretta() {
