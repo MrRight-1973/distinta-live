@@ -68,6 +68,27 @@
     display: flex; align-items: center; justify-content: center; padding: 6px; }
   .griglia-sponsor img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
+
+  .diretta { background: #fff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,.05); margin-bottom: 16px; overflow: hidden; }
+  .tabellone { background: var(--blu-scuro); color: #fff; padding: 12px 14px 10px; text-align: center; }
+  .stato { font-size: 13px; letter-spacing: .03em; opacity: .9; margin-bottom: 6px; }
+  .stato .punto { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #48BB78; margin-right: 6px;
+    vertical-align: 1px; animation: pulsa 1.6s infinite; }
+  @keyframes pulsa { 50% { opacity: .25; } }
+  .risultato { display: flex; align-items: center; justify-content: center; gap: 10px; }
+  .risultato .sq { flex: 1; font-weight: 700; font-size: 15px; line-height: 1.2; overflow-wrap: anywhere; }
+  .risultato .sq.casa { text-align: right; }
+  .risultato .sq.ospite { text-align: left; }
+  .risultato .gol { font-size: 34px; font-weight: 800; min-width: 92px; font-variant-numeric: tabular-nums; }
+  .eventi { padding: 4px 14px 8px; }
+  .evento { display: flex; align-items: baseline; gap: 8px; padding: 7px 0; border-bottom: 1px solid #EDF2F7; font-size: 14px; }
+  .evento:last-child { border-bottom: 0; }
+  .evento .min { width: 44px; flex: none; font-weight: 700; color: var(--blu); font-variant-numeric: tabular-nums; }
+  .evento .ico { width: 20px; flex: none; text-align: center; }
+  .evento .chi { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+  .evento .sqd { display: block; font-size: 12px; color: var(--testo-chiaro); }
+  .nessun-evento { color: var(--testo-chiaro); font-size: 13px; text-align: center; padding: 10px 0; }
+
   footer { text-align: center; color: var(--grigio); font-size: 12px; margin-top: 22px; }
 </style>
 </head>
@@ -94,6 +115,7 @@
 <script>
   // ---- Impostazioni ------------------------------------------------------
   const INTERVALLO_MS = 30000;   // ogni quanto la pagina rilegge la distinta
+  const INTERVALLO_DIRETTA_MS = 15000;  // ogni quanto rilegge risultato ed eventi
   // ---- Utilità: tutto il testo passa da textContent (mai da innerHTML) ----
   function el(tag, classe, testo) {
     const e = document.createElement(tag);
@@ -178,6 +200,11 @@
     }
     frag.appendChild(box);
 
+    const diretta = el("div", "diretta");
+    diretta.id = "diretta";
+    diretta.hidden = true;
+    frag.appendChild(diretta);
+
     const pdf = el("a", "btn-pdf", "📄 SCARICA LA DISTINTA (PDF)");
     pdf.href = "distinta.pdf?v=" + encodeURIComponent(d.aggiornato || Date.now());
     pdf.setAttribute("download", "distinta_ufficiale_A4.pdf");
@@ -187,6 +214,8 @@
     frag.appendChild(cardSquadra(d.ospite, "SQUADRA OSPITE"));
 
     contenuto.replaceChildren(frag);
+    distintaAttuale = d;
+    disegnaDiretta();
     const ora = formattaOra(d.aggiornato);
     piede.textContent = "Aggiornamento automatico ogni 30 secondi" + (ora ? " · ultima distinta delle " + ora : "");
   }
@@ -209,6 +238,7 @@
       if (!r.ok) throw new Error("HTTP " + r.status);
       const d = await r.json();
       if (d && d.stato === "in_attesa") {  // partita archiviata: si aspetta la prossima
+        distintaAttuale = null;
         attesa(d);
         haDati = true;
         return;
@@ -227,6 +257,80 @@
         piede.textContent = "Connessione assente: mostrati gli ultimi dati ricevuti. Riprovo tra poco…";
       }
     }
+  }
+
+
+  // ---- Diretta: risultato, tempo di gioco ed eventi scritti dalla segreteria in Cronaca ----
+  let distintaAttuale = null, ultimaDiretta = null;
+  const ICONE = { gol: "⚽", ammonizione: "🟨", espulsione: "🟥", sostituzione: "🔄" };
+
+  function minutoDiGioco(l) {
+    if (!l.inizio) return "";
+    const durata = parseInt(l.durata, 10) || 45;
+    const offset = l.fase === "secondo" ? durata : 0;
+    const trascorsi = Math.max(0, Math.floor((Date.now() / 1000 - l.inizio) / 60)) + 1;
+    return trascorsi > durata ? (offset + durata) + "+" + (trascorsi - durata) + "'" : (offset + trascorsi) + "'";
+  }
+
+  function numeroMinuto(m) {
+    const n = String(m || "").match(/\d+/g);
+    return n ? parseInt(n[0], 10) + (n[1] ? parseInt(n[1], 10) / 100 : 0) : 0;
+  }
+
+  function disegnaDiretta() {
+    const box = document.getElementById("diretta");
+    if (!box) return;
+    const d = distintaAttuale, l = ultimaDiretta;
+    const valida = d && l && l.distinta && l.distinta === d.aggiornato;
+    const eventi = valida ? (l.eventi || []) : [];
+    if (!valida || (l.stato === "prepartita" && !eventi.length)) { box.hidden = true; return; }
+
+    const tab = el("div", "tabellone");
+    const stato = el("div", "stato");
+    const testi = { primo: "1° TEMPO", secondo: "2° TEMPO", intervallo: "⏸️ INTERVALLO", finita: "🏁 FINALE", prepartita: "PRE-GARA" };
+    if (l.stato === "primo" || l.stato === "secondo") {
+      stato.appendChild(el("span", "punto"));
+      stato.appendChild(document.createTextNode("IN DIRETTA · " + testi[l.stato] + " · " + minutoDiGioco(l)));
+    } else {
+      stato.textContent = testi[l.stato] || "";
+    }
+    tab.appendChild(stato);
+    const ris = el("div", "risultato");
+    const gol = Array.isArray(l.gol) ? l.gol : [0, 0];
+    ris.appendChild(el("div", "sq casa", (d.casa && d.casa.squadra) || "Casa"));
+    ris.appendChild(el("div", "gol", (gol[0] || 0) + " - " + (gol[1] || 0)));
+    ris.appendChild(el("div", "sq ospite", (d.ospite && d.ospite.squadra) || "Ospite"));
+    tab.appendChild(ris);
+
+    const lista = el("div", "eventi");
+    const ordinati = eventi.slice().sort(function (a, b) { return numeroMinuto(b.minuto) - numeroMinuto(a.minuto); });
+    if (!ordinati.length) lista.appendChild(el("div", "nessun-evento", "Nessun evento per ora"));
+    ordinati.forEach(function (e) {
+      if (!ICONE[e.tipo]) return;
+      const riga = el("div", "evento");
+      riga.appendChild(el("span", "min", e.minuto || ""));
+      riga.appendChild(el("span", "ico", ICONE[e.tipo]));
+      const chi = el("span", "chi", (e.giocatore || (e.tipo === "gol" ? "Gol" : "")) + (e.nota ? " (" + e.nota + ")" : ""));
+      const squadra = e.squadra === "casa" ? d.casa : d.ospite;
+      chi.appendChild(el("span", "sqd", (squadra && squadra.squadra) || ""));
+      riga.appendChild(chi);
+      lista.appendChild(riga);
+    });
+    box.replaceChildren(tab, lista);
+    box.hidden = false;
+  }
+
+  async function caricaDiretta() {
+    const url = distintaAttuale && distintaAttuale.live;
+    if (!url || !/^https:\/\/[a-z0-9-]+\.supabase\.co\/storage\/v1\/object\/public\//.test(url)) return;
+    try {
+      const r = await fetch(url + "?ts=" + Date.now(), { cache: "no-store" });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      ultimaDiretta = await r.json();
+    } catch (e) {
+      // segnale debole: resta l'ultimo risultato letto
+    }
+    disegnaDiretta();
   }
 
   // Righe equilibrate: 10 -> 3,3,2,2   9 -> 3,3,3   7 -> 3,2,2   4 -> 2,2   (massimo 3 per riga)
@@ -272,12 +376,13 @@
     }
   }
 
-  carica();
+  carica().then(caricaDiretta);
   caricaSponsor();
   setInterval(function () { carica(); caricaSponsor(); }, INTERVALLO_MS);
+  setInterval(caricaDiretta, INTERVALLO_DIRETTA_MS);
   // al ritorno sull'app (telefono sbloccato, cambio scheda) aggiorna subito
   document.addEventListener("visibilitychange", function () {
-    if (!document.hidden) { carica(); caricaSponsor(); }
+    if (!document.hidden) { carica().then(caricaDiretta); caricaSponsor(); }
   });
 </script>
 </body>
