@@ -310,7 +310,7 @@
       frag.appendChild(tab);
       if (cl.aggiornata) {
         const g = String(cl.aggiornata).slice(0, 10).split("-");
-        frag.appendChild(el("div", "classifica-nota", "Aggiornata il " + g[2] + "/" + g[1] + " · fonte Tuttocampo"));
+        frag.appendChild(el("div", "classifica-nota", "Aggiornata il " + g[2] + "/" + g[1] + (cl.fonte ? " · fonte " + cl.fonte : "")));
       }
     }
     contenuto.replaceChildren(frag);
