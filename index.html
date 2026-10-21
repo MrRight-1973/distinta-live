@@ -75,6 +75,7 @@
   .classifica-attesa td.nome, .classifica-attesa th.nome { text-align: left; overflow-wrap: anywhere; }
   .classifica-attesa td.pt { font-weight: 700; color: var(--blu-scuro); }
   .classifica-attesa tr.nostra td { background: #e6eefc; font-weight: 700; }
+  .classifica-attesa img.stemma { width: 18px; height: 18px; object-fit: contain; vertical-align: -4px; margin-right: 6px; }
   .classifica-nota { color: var(--grigio); font-size: 11px; text-align: right; margin: -4px 2px 12px; }
   .ris-attesa .punti { font-weight: 700; color: var(--blu-scuro); flex: none; min-width: 42px; text-align: center; }
   .avviso { text-align: center; font-size: 12px; color: #B7791F; margin-bottom: 10px; }
@@ -251,6 +252,43 @@
     piede.textContent = "Aggiornamento automatico ogni 30 secondi" + (ora ? " · ultima distinta delle " + ora : "");
   }
 
+  let classificaRecente = null;
+
+  function disegnaClassifica(box, cl) {
+    const frag = document.createDocumentFragment();
+    if (cl.righe && cl.righe.length) {
+      frag.appendChild(el("div", "attesa-titolo", "🏆 CLASSIFICA" + (cl.gruppo ? " " + String(cl.gruppo).toUpperCase() : "")));
+      const tab = el("table", "classifica-attesa");
+      const testa = el("tr");
+      [["#", ""], ["Squadra", "nome"], ["Pt", ""], ["G", ""]].forEach(function (c) { testa.appendChild(el("th", c[1], c[0])); });
+      tab.appendChild(testa);
+      cl.righe.forEach(function (r) {
+        const riga = el("tr", r.pos === cl.nostra ? "nostra" : "");
+        riga.appendChild(el("td", "", String(r.pos)));
+        const nome = el("td", "nome");
+        if (r.logo && /^https:\/\//.test(r.logo)) {
+          const img = el("img", "stemma");
+          img.src = r.logo;
+          img.alt = "";
+          img.loading = "lazy";
+          img.onerror = function () { img.remove(); };
+          nome.appendChild(img);
+        }
+        nome.appendChild(document.createTextNode(r.squadra));
+        riga.appendChild(nome);
+        riga.appendChild(el("td", "pt", String(r.pt)));
+        riga.appendChild(el("td", "", String(r.g)));
+        tab.appendChild(riga);
+      });
+      frag.appendChild(tab);
+      if (cl.aggiornata) {
+        const g = String(cl.aggiornata).slice(0, 10).split("-");
+        frag.appendChild(el("div", "classifica-nota", "Aggiornata il " + g[2] + "/" + g[1] + (cl.fonte ? " · fonte " + cl.fonte : "")));
+      }
+    }
+    box.replaceChildren(frag);
+  }
+
   function attesa(d) {
     const box = messaggio(
       "⏳ IN ATTESA DELLA PROSSIMA PARTITA",
@@ -292,26 +330,19 @@
         frag.appendChild(riga);
       });
     }
-    const cl = (d && d.classifica) || {};
-    if (cl.righe && cl.righe.length) {
-      frag.appendChild(el("div", "attesa-titolo", "🏆 CLASSIFICA" + (cl.gruppo ? " " + String(cl.gruppo).toUpperCase() : "")));
-      const tab = el("table", "classifica-attesa");
-      const testa = el("tr");
-      [["#", ""], ["Squadra", "nome"], ["Pt", ""], ["G", ""]].forEach(function (c) { testa.appendChild(el("th", c[1], c[0])); });
-      tab.appendChild(testa);
-      cl.righe.forEach(function (r) {
-        const riga = el("tr", r.pos === cl.nostra ? "nostra" : "");
-        riga.appendChild(el("td", "", String(r.pos)));
-        riga.appendChild(el("td", "nome", r.squadra));
-        riga.appendChild(el("td", "pt", String(r.pt)));
-        riga.appendChild(el("td", "", String(r.g)));
-        tab.appendChild(riga);
-      });
-      frag.appendChild(tab);
-      if (cl.aggiornata) {
-        const g = String(cl.aggiornata).slice(0, 10).split("-");
-        frag.appendChild(el("div", "classifica-nota", "Aggiornata il " + g[2] + "/" + g[1] + (cl.fonte ? " · fonte " + cl.fonte : "")));
-      }
+    // la classifica: quella pubblicata con l'attesa, poi la copia che l'app aggiorna da sola mattina e sera
+    const boxClassifica = el("div");
+    const pubblicata = (d && d.classifica) || {};
+    disegnaClassifica(boxClassifica, classificaRecente && (!pubblicata.gruppo || classificaRecente.gruppo === pubblicata.gruppo)
+      ? classificaRecente : pubblicata);
+    frag.appendChild(boxClassifica);
+    if (d && d.classifica_url) {
+      fetch(d.classifica_url + "?ts=" + Date.now(), { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (cl) {
+          if (cl && cl.righe && cl.righe.length) { classificaRecente = cl; disegnaClassifica(boxClassifica, cl); }
+        })
+        .catch(function () {});
     }
     contenuto.replaceChildren(frag);
     piede.textContent = "Aggiornamento automatico ogni 30 secondi";
