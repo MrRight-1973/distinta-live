@@ -58,6 +58,17 @@
   .messaggio strong { display: block; color: var(--blu-scuro); margin-bottom: 6px; }
   .messaggio.attesa { padding: 32px 18px; font-size: 15px; }
   .messaggio.attesa strong { font-size: 18px; margin-bottom: 10px; }
+  .attesa-titolo { color: var(--blu-scuro); font-size: 14px; font-weight: 700; letter-spacing: .04em; margin: 18px 0 8px; }
+  .partita-prossima { background: #fff; border-radius: 10px; padding: 12px 15px; margin-bottom: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,.05); border-left: 4px solid var(--blu); }
+  .partita-prossima .squadre { font-weight: 700; color: var(--blu-scuro); font-size: 16px; }
+  .partita-prossima .dettagli { color: var(--testo-chiaro); font-size: 13px; margin-top: 4px; }
+  .ris-attesa { display: flex; align-items: center; background: #fff; border-radius: 8px; padding: 8px 12px;
+    margin-bottom: 6px; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,.04); gap: 8px; }
+  .ris-attesa .data { color: var(--grigio); font-size: 12px; width: 44px; flex: none; }
+  .ris-attesa .squadra { flex: 1; min-width: 0; font-size: 13px; overflow-wrap: break-word; hyphens: auto; }
+  .ris-attesa .squadra.destra { text-align: right; }
+  .ris-attesa .punti { font-weight: 700; color: var(--blu-scuro); flex: none; min-width: 42px; text-align: center; }
   .avviso { text-align: center; font-size: 12px; color: #B7791F; margin-bottom: 10px; }
 
   .sponsor { margin-top: 24px; border-top: 1px dashed #CBD5E0; padding-top: 14px; }
@@ -239,7 +250,41 @@
       "appena disponibili: la pagina si aggiorna da sola."
     );
     box.classList.add("attesa");
-    contenuto.replaceChildren(box);
+    const frag = document.createDocumentFragment();
+    frag.appendChild(box);
+    const giorni = ["dom", "lun", "mar", "mer", "gio", "ven", "sab"];
+    function dataBreve(iso) {  // "2026-10-26" -> "dom 26/10"
+      const p = String(iso || "").split("-");
+      if (p.length !== 3) return String(iso || "");
+      const g = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+      return giorni[g.getDay()] + " " + p[2] + "/" + p[1];
+    }
+    const prossime = (d && d.prossime) || [];
+    if (prossime.length) {
+      frag.appendChild(el("div", "attesa-titolo", prossime.length > 1 ? "📅 PROSSIME PARTITE" : "📅 PROSSIMA PARTITA"));
+      prossime.forEach(function (p) {
+        const card = el("div", "partita-prossima");
+        card.appendChild(el("div", "squadre", (p.casa || "") + " - " + (p.ospite || "")));
+        const dove = [p.campo, p.localita].filter(Boolean).join(", ");
+        const righe = [dataBreve(p.data) + (p.ora ? " ore " + p.ora : ""), p.competizione, p.giornata, dove]
+          .filter(Boolean);
+        card.appendChild(el("div", "dettagli", righe.join(" · ")));
+        frag.appendChild(card);
+      });
+    }
+    const risultati = (d && d.risultati) || [];
+    if (risultati.length) {
+      frag.appendChild(el("div", "attesa-titolo", "⚽ ULTIMI RISULTATI"));
+      risultati.forEach(function (r) {
+        const riga = el("div", "ris-attesa");
+        riga.appendChild(el("span", "data", String(r.data || "").slice(0, 5)));
+        riga.appendChild(el("span", "squadra destra", r.casa));
+        riga.appendChild(el("span", "punti", r.gol_casa + " - " + r.gol_ospite));
+        riga.appendChild(el("span", "squadra", r.ospite));
+        frag.appendChild(riga);
+      });
+    }
+    contenuto.replaceChildren(frag);
     piede.textContent = "Aggiornamento automatico ogni 30 secondi";
   }
 
