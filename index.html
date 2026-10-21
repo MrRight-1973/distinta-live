@@ -68,6 +68,14 @@
   .ris-attesa .data { color: var(--grigio); font-size: 12px; width: 44px; flex: none; }
   .ris-attesa .squadra { flex: 1; min-width: 0; font-size: 13px; overflow-wrap: break-word; hyphens: auto; }
   .ris-attesa .squadra.destra { text-align: right; }
+  .classifica-attesa { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px;
+    overflow: hidden; font-size: 13px; margin-bottom: 10px; }
+  .classifica-attesa th { background: var(--blu-scuro); color: #fff; font-weight: 600; padding: 6px 8px; text-align: center; }
+  .classifica-attesa td { padding: 6px 8px; border-top: 1px solid #eef1f6; text-align: center; }
+  .classifica-attesa td.nome, .classifica-attesa th.nome { text-align: left; overflow-wrap: anywhere; }
+  .classifica-attesa td.pt { font-weight: 700; color: var(--blu-scuro); }
+  .classifica-attesa tr.nostra td { background: #e6eefc; font-weight: 700; }
+  .classifica-nota { color: var(--grigio); font-size: 11px; text-align: right; margin: -4px 2px 12px; }
   .ris-attesa .punti { font-weight: 700; color: var(--blu-scuro); flex: none; min-width: 42px; text-align: center; }
   .avviso { text-align: center; font-size: 12px; color: #B7791F; margin-bottom: 10px; }
 
@@ -283,6 +291,27 @@
         riga.appendChild(el("span", "squadra", r.ospite));
         frag.appendChild(riga);
       });
+    }
+    const cl = (d && d.classifica) || {};
+    if (cl.righe && cl.righe.length) {
+      frag.appendChild(el("div", "attesa-titolo", "🏆 CLASSIFICA" + (cl.gruppo ? " " + String(cl.gruppo).toUpperCase() : "")));
+      const tab = el("table", "classifica-attesa");
+      const testa = el("tr");
+      [["#", ""], ["Squadra", "nome"], ["Pt", ""], ["G", ""]].forEach(function (c) { testa.appendChild(el("th", c[1], c[0])); });
+      tab.appendChild(testa);
+      cl.righe.forEach(function (r) {
+        const riga = el("tr", r.pos === cl.nostra ? "nostra" : "");
+        riga.appendChild(el("td", "", String(r.pos)));
+        riga.appendChild(el("td", "nome", r.squadra));
+        riga.appendChild(el("td", "pt", String(r.pt)));
+        riga.appendChild(el("td", "", String(r.g)));
+        tab.appendChild(riga);
+      });
+      frag.appendChild(tab);
+      if (cl.aggiornata) {
+        const g = String(cl.aggiornata).slice(0, 10).split("-");
+        frag.appendChild(el("div", "classifica-nota", "Aggiornata il " + g[2] + "/" + g[1] + " · fonte Tuttocampo"));
+      }
     }
     contenuto.replaceChildren(frag);
     piede.textContent = "Aggiornamento automatico ogni 30 secondi";
