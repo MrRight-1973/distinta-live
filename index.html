@@ -419,14 +419,13 @@
     ris.appendChild(el("div", "sq ospite", (d.ospite && d.ospite.squadra) || "Ospite"));
     tab.appendChild(ris);
 
-    // Gli eventi in una tendina chiusa: si vede sempre solo l'ultimo; aperta o chiusa resta com'è tra un aggiornamento e l'altro
+    // Gli eventi in una tendina chiusa (si vede solo il pulsante); aperta o chiusa resta com'è tra un aggiornamento e l'altro
     const lista = el("div", "eventi");
     const ordinati = eventi.filter(function (e) { return ICONE[e.tipo]; })
       .sort(function (a, b) { return numeroMinuto(b.minuto) - numeroMinuto(a.minuto); });
     if (!ordinati.length) {
       lista.appendChild(el("div", "nessun-evento", "Nessun evento per ora"));
     } else {
-      if (!eventiAperti) lista.appendChild(rigaEvento(ordinati[0]));
       const bottone = el("button", "apri-eventi",
         "📋 Eventi della partita (" + ordinati.length + ") " + (eventiAperti ? "▴" : "▾"));
       bottone.type = "button";
