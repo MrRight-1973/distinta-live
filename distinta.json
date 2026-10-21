@@ -1,0 +1,182 @@
+{
+  "stato": "in_attesa",
+  "aggiornato": "2026-10-21T12:49:46+00:00",
+  "prossime": [
+    {
+      "data": "2026-10-21",
+      "ora": "20:30",
+      "casa": "A.S.D. AZZURRA DUE CARRARE",
+      "ospite": "SPES POJANA",
+      "competizione": "TROFEO REGIONE VENETO",
+      "giornata": "",
+      "campo": "CAMPO SPORTIVO COMUNALE",
+      "localita": "BATTAGLIA TERME (PD)"
+    },
+    {
+      "data": "2026-10-25",
+      "ora": "14:30",
+      "casa": "VIRTUS BAGNOLI ARRE ASD",
+      "ospite": "A.S.D. AZZURRA DUE CARRARE",
+      "competizione": "PRIMA CATEGORIA GIRONE E",
+      "giornata": "7ª andata",
+      "campo": "CAMPO COMUNALE",
+      "localita": "BAGNOLI DI SOPRA"
+    },
+    {
+      "data": "2026-11-01",
+      "ora": "14:30",
+      "casa": "A.S.D. AZZURRA DUE CARRARE",
+      "ospite": "TURCHESE",
+      "competizione": "PRIMA CATEGORIA GIRONE E",
+      "giornata": "8ª andata",
+      "campo": "CAMPO COMUNALE",
+      "localita": "DUE CARRARE"
+    }
+  ],
+  "risultati": [
+    {
+      "data": "18/10/2026",
+      "casa": "AZZURRA DUE CARRARE",
+      "ospite": "A.S.D. RIVEREEL SOSANO",
+      "gol_casa": 2,
+      "gol_ospite": 1,
+      "competizione": "PRIMA CATEGORIA GIRONE E"
+    },
+    {
+      "data": "11/10/2026",
+      "casa": "A.P. DUE STELLE A.S.D.",
+      "ospite": "AZZURRA DUECARRARE",
+      "gol_casa": 1,
+      "gol_ospite": 2,
+      "competizione": "PRIMA CATEGORIA GIRONE E"
+    },
+    {
+      "data": "04/10/2026",
+      "casa": "AZZURRA DUECARRARE",
+      "ospite": "ASD SPES POJANA",
+      "gol_casa": 1,
+      "gol_ospite": 0,
+      "competizione": "PRIMA CATEGORIA GIRONE E"
+    },
+    {
+      "data": "27/09/2026",
+      "casa": "BOCAR JUNIORS",
+      "ospite": "AZZURRA DUECARRARE",
+      "gol_casa": 2,
+      "gol_ospite": 0,
+      "competizione": "PRIMA CATEGORIA GIRONE E"
+    },
+    {
+      "data": "23/09/2026",
+      "casa": "U.S.D. VIRTUS BAGNOLI ARRE ASD",
+      "ospite": "AZZURRA DUECARRARE",
+      "gol_casa": 0,
+      "gol_ospite": 1,
+      "competizione": "TROFEO REGIONE VENETO"
+    }
+  ],
+  "classifica": {
+    "gruppo": "PRIMA CATEGORIA",
+    "aggiornata": "2026-10-21 12:49",
+    "nostra": 3,
+    "fonte": "LND",
+    "righe": [
+      {
+        "pos": 1,
+        "squadra": "Scardovari",
+        "pt": 16,
+        "g": 6
+      },
+      {
+        "pos": 2,
+        "squadra": "Virtus Bagnoli Arre Asd",
+        "pt": 13,
+        "g": 6
+      },
+      {
+        "pos": 3,
+        "squadra": "Azzurra Due Carrare",
+        "pt": 13,
+        "g": 6
+      },
+      {
+        "pos": 4,
+        "squadra": "Villanovese",
+        "pt": 12,
+        "g": 6
+      },
+      {
+        "pos": 5,
+        "squadra": "Bocar Juniors Arl",
+        "pt": 10,
+        "g": 6
+      },
+      {
+        "pos": 6,
+        "squadra": "Montagnana",
+        "pt": 10,
+        "g": 6
+      },
+      {
+        "pos": 7,
+        "squadra": "Turchese",
+        "pt": 8,
+        "g": 6
+      },
+      {
+        "pos": 8,
+        "squadra": "Spes Pojana",
+        "pt": 8,
+        "g": 6
+      },
+      {
+        "pos": 9,
+        "squadra": "Fiessese",
+        "pt": 7,
+        "g": 6
+      },
+      {
+        "pos": 10,
+        "squadra": "Polisportiva Real Terme",
+        "pt": 7,
+        "g": 6
+      },
+      {
+        "pos": 11,
+        "squadra": "Psn Legnaro Polverara",
+        "pt": 7,
+        "g": 6
+      },
+      {
+        "pos": 12,
+        "squadra": "Union River",
+        "pt": 7,
+        "g": 6
+      },
+      {
+        "pos": 13,
+        "squadra": "Altopolesine",
+        "pt": 5,
+        "g": 6
+      },
+      {
+        "pos": 14,
+        "squadra": "Pettorazza San Martino",
+        "pt": 4,
+        "g": 6
+      },
+      {
+        "pos": 15,
+        "squadra": "Rivereel Sossano",
+        "pt": 4,
+        "g": 6
+      },
+      {
+        "pos": 16,
+        "squadra": "Due Stelle A.s.d",
+        "pt": 1,
+        "g": 6
+      }
+    ]
+  }
+}
