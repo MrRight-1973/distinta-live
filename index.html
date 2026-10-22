@@ -389,9 +389,15 @@
     return trascorsi > durata ? (offset + durata) + "+" + (trascorsi - durata) + "'" : (offset + trascorsi) + "'";
   }
 
+  // Per l'ordine: i cambi fatti all'intervallo vanno tra il recupero del primo tempo e il secondo tempo
   function numeroMinuto(m) {
     const n = String(m || "").match(/\d+/g);
-    return n ? parseInt(n[0], 10) + (n[1] ? parseInt(n[1], 10) / 100 : 0) : 0;
+    if (n) return parseInt(n[0], 10) + (n[1] ? parseInt(n[1], 10) / 100 : 0);
+    const testo = String(m || "").trim().toLowerCase();
+    const durata = parseInt(ultimaDiretta && ultimaDiretta.durata, 10) || 45;
+    if (testo.indexOf("inter") === 0) return durata + 0.99;
+    if (testo.indexOf("fine") === 0) return 999;
+    return 0;
   }
 
   function disegnaDiretta() {
@@ -448,7 +454,7 @@
     if (e.squadra === "casa") { lato.appendChild(chi); lato.appendChild(ico); }
     else { lato.appendChild(ico); lato.appendChild(chi); }
     riga.appendChild(casa);
-    riga.appendChild(el("span", "min", e.minuto || ""));
+    riga.appendChild(el("span", "min", /^inter/i.test(e.minuto || "") ? "Int." : (e.minuto || "")));
     riga.appendChild(ospite);
     return riga;
   }
