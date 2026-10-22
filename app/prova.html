@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<!-- Pagina d'ingresso del portale da installare sul telefono ("Aggiungi a schermata Home"): solo una cornice
+     con icona e nome della società attorno all'app Streamlit. Nessun dato qui: il login resta quello dell'app. -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Azzurra · Portale (prova)</title>
+<meta name="theme-color" content="#1A365D">
+<meta name="robots" content="noindex">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Azzurra">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icona-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+  html, body { margin: 0; height: 100%; background: #FFFFFF; font-family: system-ui, sans-serif; }
+  #attesa { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center;
+            justify-content: center; gap: 14px; color: #1A365D; text-align: center; padding: 24px; }
+  #attesa img { width: 96px; height: auto; }
+  #attesa a { color: #2B6CB0; font-size: 14px; }
+  /* Sotto la barra di stato dell'iPhone e più alta dello schermo: la banda "Built with Streamlit / Fullscreen"
+     che Streamlit Cloud mette in fondo alle app incorporate resta fuori, sotto il bordo (l'app scorre dentro) */
+  :root { --banda: 0px; }  /* prova: portale aperto senza la cornice di Streamlit Cloud */
+  html, body { overflow: hidden; }
+  iframe { position: fixed; left: 0; right: 0; top: env(safe-area-inset-top); width: 100%;
+           height: calc(100% - env(safe-area-inset-top) + var(--banda)); border: 0; background: transparent; }
+</style>
+</head>
+<body>
+  <div id="attesa">
+    <img src="apple-touch-icon.png" alt="">
+    <div>Apertura del portale…</div>
+    <a href="https://distinte-stadio.streamlit.app/" target="_blank" rel="noopener">Non si apre? Usalo nel browser</a>
+  </div>
+  <iframe src="https://distinte-stadio.streamlit.app/~/+/?embed=true" title="Portale Gestione Sportiva"
+          allow="camera; microphone; clipboard-read; clipboard-write; fullscreen"></iframe>
+</body>
+</html>
