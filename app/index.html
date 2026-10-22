@@ -21,12 +21,11 @@
             justify-content: center; gap: 14px; color: #1A365D; text-align: center; padding: 24px; }
   #attesa img { width: 96px; height: auto; }
   #attesa a { color: #2B6CB0; font-size: 14px; }
-  /* Sotto la barra di stato dell'iPhone e più alta dello schermo: la banda "Built with Streamlit / Fullscreen"
-     che Streamlit Cloud mette in fondo alle app incorporate resta fuori, sotto il bordo (l'app scorre dentro) */
-  :root { --banda: 40px; }
+  /* Sotto la barra di stato dell'iPhone, fino in fondo allo schermo. L'app si apre all'indirizzo interno
+     (/~/+/) e non nella cornice di Streamlit Cloud, che aggiunge in fondo la banda "Built with Streamlit". */
   html, body { overflow: hidden; }
   iframe { position: fixed; left: 0; right: 0; top: env(safe-area-inset-top); width: 100%;
-           height: calc(100% - env(safe-area-inset-top) + var(--banda)); border: 0; background: transparent; }
+           height: calc(100% - env(safe-area-inset-top)); border: 0; background: transparent; }
 </style>
 </head>
 <body>
@@ -35,7 +34,7 @@
     <div>Apertura del portale…</div>
     <a href="https://distinte-stadio.streamlit.app/" target="_blank" rel="noopener">Non si apre? Usalo nel browser</a>
   </div>
-  <iframe src="https://distinte-stadio.streamlit.app/?embed=true" title="Portale Gestione Sportiva"
+  <iframe src="https://distinte-stadio.streamlit.app/~/+/?embed=true" title="Portale Gestione Sportiva"
           allow="camera; microphone; clipboard-read; clipboard-write; fullscreen"></iframe>
 </body>
 </html>
