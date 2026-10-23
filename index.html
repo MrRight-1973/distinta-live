@@ -77,6 +77,14 @@
   .classifica-attesa tr.nostra td { background: #e6eefc; font-weight: 700; }
   .classifica-attesa img.stemma { width: 18px; height: 18px; object-fit: contain; vertical-align: -4px; margin-right: 6px; }
   .classifica-nota { color: var(--grigio); font-size: 11px; text-align: right; margin: -4px 2px 12px; }
+  .schede-squadre { display: flex; gap: 8px; overflow-x: auto; margin: 18px 0 4px; padding-bottom: 4px;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .schede-squadre::-webkit-scrollbar { display: none; }
+  .scheda { flex: none; border: 2px solid var(--blu-scuro); background: #fff; color: var(--blu-scuro);
+    font: inherit; font-size: 14px; font-weight: 700; padding: 8px 16px; border-radius: 999px; cursor: pointer; }
+  .scheda[aria-pressed="true"] { background: var(--blu-scuro); color: #fff; }
+  .scheda:focus-visible { outline: 3px solid var(--blu); outline-offset: 2px; }
+  .messaggio.vuoto { margin-top: 18px; font-size: 14px; }
   .ris-attesa .punti { font-weight: 700; color: var(--blu-scuro); flex: none; min-width: 42px; text-align: center; }
   .avviso { text-align: center; font-size: 12px; color: #B7791F; margin-bottom: 10px; }
 
@@ -289,23 +297,31 @@
     box.replaceChildren(frag);
   }
 
-  function attesa(d) {
-    const box = messaggio(
-      "⏳ IN ATTESA DELLA PROSSIMA PARTITA",
-      "La partita precedente è conclusa. Le distinte della prossima gara saranno pubblicate qui " +
-      "appena disponibili: la pagina si aggiorna da sola."
-    );
-    box.classList.add("attesa");
+  // la copia della classifica che l'app aggiorna da sola mattina e sera: ha anche "per_gruppo", una per squadra
+  function classificaFresca(gruppo, pubblicata) {
+    const cl = classificaRecente;
+    if (!cl) return pubblicata;
+    const pg = cl.per_gruppo && gruppo ? cl.per_gruppo[gruppo] : null;
+    if (pg && pg.righe && pg.righe.length) return pg;
+    if (gruppo) return cl.gruppo === gruppo ? cl : pubblicata;
+    return !pubblicata.gruppo || cl.gruppo === pubblicata.gruppo ? cl : pubblicata;
+  }
+
+  const giorni = ["dom", "lun", "mar", "mer", "gio", "ven", "sab"];
+  function dataBreve(iso) {  // "2026-10-26" -> "dom 26/10"
+    const p = String(iso || "").split("-");
+    if (p.length !== 3) return String(iso || "");
+    const g = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+    return giorni[g.getDay()] + " " + p[2] + "/" + p[1];
+  }
+
+  let squadraScelta = null;   // la scheda squadra aperta: resta quella anche quando la pagina si aggiorna
+  let sezioneCorrente = null; // {box della classifica, gruppo, classifica pubblicata}
+
+  // prossime partite, ultimi risultati e classifica di una squadra (o di tutte, con i dati di prima)
+  function disegnaSezione(corpo, s) {
     const frag = document.createDocumentFragment();
-    frag.appendChild(box);
-    const giorni = ["dom", "lun", "mar", "mer", "gio", "ven", "sab"];
-    function dataBreve(iso) {  // "2026-10-26" -> "dom 26/10"
-      const p = String(iso || "").split("-");
-      if (p.length !== 3) return String(iso || "");
-      const g = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
-      return giorni[g.getDay()] + " " + p[2] + "/" + p[1];
-    }
-    const prossime = (d && d.prossime) || [];
+    const prossime = s.prossime || [];
     if (prossime.length) {
       frag.appendChild(el("div", "attesa-titolo", prossime.length > 1 ? "📅 PROSSIME PARTITE" : "📅 PROSSIMA PARTITA"));
       prossime.forEach(function (p) {
@@ -318,7 +334,7 @@
         frag.appendChild(card);
       });
     }
-    const risultati = (d && d.risultati) || [];
+    const risultati = s.risultati || [];
     if (risultati.length) {
       frag.appendChild(el("div", "attesa-titolo", "⚽ ULTIMI RISULTATI"));
       risultati.forEach(function (r) {
@@ -330,17 +346,64 @@
         frag.appendChild(riga);
       });
     }
-    // la classifica: quella pubblicata con l'attesa, poi la copia che l'app aggiorna da sola mattina e sera
     const boxClassifica = el("div");
-    const pubblicata = (d && d.classifica) || {};
-    disegnaClassifica(boxClassifica, classificaRecente && (!pubblicata.gruppo || classificaRecente.gruppo === pubblicata.gruppo)
-      ? classificaRecente : pubblicata);
+    const pubblicata = s.classifica || {};
+    sezioneCorrente = { box: boxClassifica, gruppo: s.gruppo || "", pubblicata: pubblicata };
+    disegnaClassifica(boxClassifica, classificaFresca(s.gruppo || "", pubblicata));
     frag.appendChild(boxClassifica);
+    if (!prossime.length && !risultati.length && !(pubblicata.righe && pubblicata.righe.length) && s.gruppo) {
+      frag.appendChild(el("div", "messaggio vuoto", "Nessuna partita in programma per questa squadra."));
+    }
+    corpo.replaceChildren(frag);
+  }
+
+  function attesa(d) {
+    const box = messaggio(
+      "⏳ IN ATTESA DELLA PROSSIMA PARTITA",
+      "La partita precedente è conclusa. Le distinte della prossima gara saranno pubblicate qui " +
+      "appena disponibili: la pagina si aggiorna da sola."
+    );
+    box.classList.add("attesa");
+    const frag = document.createDocumentFragment();
+    frag.appendChild(box);
+    const corpo = el("div");
+    const squadre = ((d && d.squadre) || []).filter(function (s) { return s && s.gruppo; });
+    if (squadre.length > 1) {
+      // una scheda per squadra: si tocca il nome e si vedono le sue partite e la sua classifica
+      if (!squadre.some(function (s) { return s.gruppo === squadraScelta; })) squadraScelta = squadre[0].gruppo;
+      const schede = el("div", "schede-squadre");
+      schede.setAttribute("role", "group");
+      schede.setAttribute("aria-label", "Squadre");
+      squadre.forEach(function (s) {
+        const b = el("button", "scheda", s.gruppo);
+        b.type = "button";
+        b.setAttribute("aria-pressed", String(s.gruppo === squadraScelta));
+        b.addEventListener("click", function () {
+          squadraScelta = s.gruppo;
+          schede.querySelectorAll(".scheda").forEach(function (x) {
+            x.setAttribute("aria-pressed", String(x === b));
+          });
+          disegnaSezione(corpo, s);
+        });
+        schede.appendChild(b);
+      });
+      frag.appendChild(schede);
+      disegnaSezione(corpo, squadre.find(function (s) { return s.gruppo === squadraScelta; }));
+    } else if (squadre.length === 1) {
+      disegnaSezione(corpo, squadre[0]);
+    } else {  // distinta.json pubblicata prima delle schede squadra
+      disegnaSezione(corpo, { prossime: d && d.prossime, risultati: d && d.risultati, classifica: d && d.classifica });
+    }
+    frag.appendChild(corpo);
     if (d && d.classifica_url) {
       fetch(d.classifica_url + "?ts=" + Date.now(), { cache: "no-store" })
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (cl) {
-          if (cl && cl.righe && cl.righe.length) { classificaRecente = cl; disegnaClassifica(boxClassifica, cl); }
+          if (cl && cl.righe && cl.righe.length) {
+            classificaRecente = cl;
+            const c = sezioneCorrente;
+            if (c && c.box.isConnected) disegnaClassifica(c.box, classificaFresca(c.gruppo, c.pubblicata));
+          }
         })
         .catch(function () {});
     }
