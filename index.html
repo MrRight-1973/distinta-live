@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1A365D">
+<title>Distinta Digitale Live - Azzurra Due Carrare</title>
+<link rel="icon" href="logo.png">
+<style>
+  :root {
+    --blu-scuro: #1A365D;
+    --blu: #2B6CB0;
+    --azzurro: #E2E8F0;
+    --sfondo: #F0F4F8;
+    --testo: #2D3748;
+    --testo-chiaro: #4A5568;
+    --grigio: #A0AEC0;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--sfondo);
+    color: var(--testo);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.35;
+  }
+  .contenitore { max-width: 700px; margin: 0 auto; padding: 16px 16px 40px; }
+
+  header { text-align: center; padding: 8px 0 4px; }
+  header img { height: 72px; width: auto; display: block; margin: 0 auto 8px; }
+  .titolo { color: var(--blu-scuro); font-size: 24px; font-weight: 700; margin: 0; }
+  .sottotitolo { color: var(--blu); font-size: 18px; font-weight: 700; margin: 2px 0 0; }
+
+  .info-match { text-align: center; color: var(--testo-chiaro); font-size: 14px; margin: 14px 0 16px; }
+  .icona { width: 1.15em; height: 1.15em; vertical-align: -0.2em; }
+  .info-match div + div { margin-top: 2px; }
+  .info-match .squadre-match { color: var(--blu-scuro); font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+
+  .btn-pdf {
+    display: block; width: 100%; text-align: center; text-decoration: none;
+    background: var(--blu-scuro); color: #fff; font-weight: 700; font-size: 16px;
+    padding: 14px 16px; border-radius: 10px; margin-bottom: 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,.08);
+  }
+  .btn-pdf:active { background: var(--blu); }
+
+  .card { background: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,.05); margin-bottom: 15px; }
+  .nome-squadra { color: var(--blu); font-size: 18px; font-weight: 700; border-bottom: 2px solid var(--azzurro); padding-bottom: 5px; margin-bottom: 10px; }
+  .allenatore { font-style: italic; color: var(--testo-chiaro); font-size: 13px; margin-bottom: 10px; }
+  .riga { display: flex; align-items: baseline; padding: 6px 0; border-bottom: 1px solid #EDF2F7; font-size: 15px; }
+  .riga:last-child { border-bottom: 0; }
+  .num { font-weight: 700; color: var(--blu); width: 28px; flex: none; }
+  .nome { flex: 1; padding-left: 5px; min-width: 0; overflow-wrap: anywhere; }
+  .anno { color: var(--grigio); width: 44px; text-align: right; flex: none; }
+
+  .messaggio { background: #fff; border-radius: 10px; padding: 18px; text-align: center; color: var(--testo-chiaro); box-shadow: 0 4px 6px rgba(0,0,0,.05); }
+  .messaggio strong { display: block; color: var(--blu-scuro); margin-bottom: 6px; }
+  .messaggio.attesa { padding: 32px 18px; font-size: 15px; }
+  .messaggio.attesa strong { font-size: 18px; margin-bottom: 10px; }
+  .attesa-titolo { color: var(--blu-scuro); font-size: 14px; font-weight: 700; letter-spacing: .04em; margin: 18px 0 8px; }
+  .partita-prossima { background: #fff; border-radius: 10px; padding: 12px 15px; margin-bottom: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,.05); border-left: 4px solid var(--blu); }
+  .partita-prossima .squadre { font-weight: 700; color: var(--blu-scuro); font-size: 16px; }
+  .partita-prossima .dettagli { color: var(--testo-chiaro); font-size: 13px; margin-top: 4px; }
+  .ris-attesa { display: flex; align-items: center; background: #fff; border-radius: 8px; padding: 8px 12px;
+    margin-bottom: 6px; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,.04); gap: 8px; }
+  .ris-attesa .data { color: var(--grigio); font-size: 12px; width: 44px; flex: none; }
+  .ris-attesa .squadra { flex: 1; min-width: 0; font-size: 13px; overflow-wrap: break-word; hyphens: auto; }
+  .ris-attesa .squadra.destra { text-align: right; }
+  .classifica-attesa { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px;
+    overflow: hidden; font-size: 13px; margin-bottom: 10px; }
+  .classifica-attesa th { background: var(--blu-scuro); color: #fff; font-weight: 600; padding: 6px 8px; text-align: center; }
+  .classifica-attesa td { padding: 6px 8px; border-top: 1px solid #eef1f6; text-align: center; }
+  .classifica-attesa td.nome, .classifica-attesa th.nome { text-align: left; overflow-wrap: anywhere; }
+  .classifica-attesa td.pt { font-weight: 700; color: var(--blu-scuro); }
+  .classifica-attesa tr.nostra td { background: #e6eefc; font-weight: 700; }
+  .classifica-attesa img.stemma { width: 18px; height: 18px; object-fit: contain; vertical-align: -4px; margin-right: 6px; }
+  .classifica-nota { color: var(--grigio); font-size: 11px; text-align: right; margin: -4px 2px 12px; }
+  .apri-mappa { display: inline-block; margin-top: 10px; padding: 7px 14px; border-radius: 999px;
+    background: var(--blu-scuro); color: #fff; font-size: 13px; font-weight: 700; text-decoration: none; }
+  .apri-mappa:focus-visible { outline: 3px solid var(--blu); outline-offset: 2px; }
+  .schede-squadre { display: flex; gap: 8px; overflow-x: auto; margin: 18px 0 4px; padding-bottom: 4px;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .schede-squadre::-webkit-scrollbar { display: none; }
+  .scheda { flex: none; border: 2px solid var(--blu-scuro); background: #fff; color: var(--blu-scuro);
+    font: inherit; font-size: 14px; font-weight: 700; padding: 8px 16px; border-radius: 999px; cursor: pointer; }
+  .scheda[aria-pressed="true"] { background: var(--blu-scuro); color: #fff; }
+  .scheda:focus-visible { outline: 3px solid var(--blu); outline-offset: 2px; }
+  .messaggio.vuoto { margin-top: 18px; font-size: 14px; }
+  .ris-attesa .punti { font-weight: 700; color: var(--blu-scuro); flex: none; min-width: 42px; text-align: center; }
+  .avviso { text-align: center; font-size: 12px; color: #B7791F; margin-bottom: 10px; }
+
+  .sponsor { margin-top: 24px; border-top: 1px dashed #CBD5E0; padding-top: 14px; }
+  .sponsor h2 { text-align: center; font-size: 12px; letter-spacing: .08em; color: var(--testo-chiaro); margin: 0 0 10px; }
+  .griglia-sponsor { display: flex; flex-direction: column; gap: 8px; }
+  .riga-sponsor { display: flex; justify-content: center; gap: 8px; }
+  .griglia-sponsor .cella { background: #fff; border-radius: 8px; height: 64px; width: calc((100% - 16px) / 3);
+    display: flex; align-items: center; justify-content: center; padding: 6px; }
+  .griglia-sponsor img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+
+  .diretta { background: #fff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,.05); margin-bottom: 16px; overflow: hidden; }
+  .tabellone { background: var(--blu-scuro); color: #fff; padding: 12px 14px 10px; text-align: center; }
+  .stato { font-size: 13px; letter-spacing: .03em; opacity: .9; margin-bottom: 6px; }
+  .stato .punto { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #48BB78; margin-right: 6px;
+    vertical-align: 1px; animation: pulsa 1.6s infinite; }
+  @keyframes pulsa { 50% { opacity: .25; } }
+  .risultato { display: flex; align-items: center; justify-content: center; gap: 10px; }
+  .risultato .sq { flex: 1; font-weight: 700; font-size: 15px; line-height: 1.2; overflow-wrap: anywhere; }
+  .risultato .sq.casa { text-align: right; }
+  .risultato .sq.ospite { text-align: left; }
+  .risultato .gol { font-size: 34px; font-weight: 800; min-width: 92px; font-variant-numeric: tabular-nums; }
+  .eventi { padding: 4px 14px 8px; }
+  /* Eventi in tre colonne, sotto le squadre del tabellone: casa | minuto | ospite */
+  .evento { display: grid; grid-template-columns: 1fr 52px 1fr; align-items: center; padding: 7px 0;
+    border-bottom: 1px solid #EDF2F7; font-size: 14px; line-height: 1.25; }
+  .evento:last-child { border-bottom: 0; }
+  .evento .min { text-align: center; font-weight: 700; color: var(--blu); font-variant-numeric: tabular-nums; }
+  .evento .lato { display: flex; align-items: center; gap: 6px; min-width: 0; }
+  .evento .lato.casa { justify-content: flex-end; text-align: right; }
+  .evento .lato.ospite { justify-content: flex-start; text-align: left; }
+  .evento .ico { flex: none; }
+  .evento .chi { min-width: 0; overflow-wrap: anywhere; }
+  .evento .nota { color: var(--testo-chiaro); font-size: 12px; }
+  .evento .riga-cambio { display: block; }
+  .evento .entra::before { content: "▲ "; color: #38A169; font-size: 10px; }
+  .evento .esce { color: var(--testo-chiaro); }
+  .evento .esce::before { content: "▼ "; color: #E53E3E; font-size: 10px; }
+  .apri-eventi { display: block; width: 100%; margin: 4px 0 2px; padding: 8px; border: 1px solid #E2E8F0; border-radius: 8px;
+    background: #F7FAFC; color: var(--blu-scuro); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .apri-eventi + .evento { margin-top: 4px; }
+  .nessun-evento { color: var(--testo-chiaro); font-size: 13px; text-align: center; padding: 10px 0; }
+
+  footer { text-align: center; color: var(--grigio); font-size: 12px; margin-top: 22px; }
+</style>
+</head>
+<body>
+<div class="contenitore">
+  <header>
+    <img src="logo.png" alt="A.S.D. Azzurra Due Carrare">
+    <h1 class="titolo">AZZURRA DUE CARRARE</h1>
+    <p class="sottotitolo">DISTINTA DIGITALE LIVE</p>
+  </header>
+
+  <main id="contenuto">
+    <div class="messaggio"><strong>Caricamento…</strong></div>
+  </main>
+
+  <section class="sponsor" id="sponsor" hidden>
+    <h2>I NOSTRI SPONSOR</h2>
+    <div class="griglia-sponsor" id="griglia-sponsor"></div>
+  </section>
+
+  <footer id="piede"></footer>
+</div>
+
+<script>
+  // ---- Impostazioni ------------------------------------------------------
+  const INTERVALLO_MS = 30000;   // ogni quanto la pagina rilegge la distinta
+  const INTERVALLO_DIRETTA_MS = 15000;  // ogni quanto rilegge risultato ed eventi
+  // ---- Utilità: tutto il testo passa da textContent (mai da innerHTML) ----
+  function el(tag, classe, testo) {
+    const e = document.createElement(tag);
+    if (classe) e.className = classe;
+    if (testo !== undefined && testo !== null) e.textContent = String(testo);
+    return e;
+  }
+
+  const contenuto = document.getElementById("contenuto");
+  const piede = document.getElementById("piede");
+  let haDati = false;
+
+  function messaggio(titolo, testo) {
+    const box = el("div", "messaggio");
+    box.appendChild(el("strong", null, titolo));
+    box.appendChild(document.createTextNode(testo));
+    return box;
+  }
+
+  function cardSquadra(dati, titoloDefault) {
+    dati = dati || {};
+    const card = el("div", "card");
+    card.appendChild(el("div", "nome-squadra", dati.squadra || titoloDefault));
+    if (dati.allenatore) card.appendChild(el("div", "allenatore", "All. " + dati.allenatore));
+    (dati.giocatori || []).forEach(function (g) {
+      const nome = String((g && g.GIOCATORE) || "").trim();
+      if (!nome) return;
+      const riga = el("div", "riga");
+      riga.appendChild(el("span", "num", g["N°"]));
+      riga.appendChild(el("span", "nome", nome));
+      riga.appendChild(el("span", "anno", g.ANNO));
+      card.appendChild(riga);
+    });
+    return card;
+  }
+
+  function formattaOra(iso) {
+    const d = new Date(iso);
+    if (isNaN(d)) return "";
+    return d.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" });
+  }
+
+  // Non esiste un emoji "fischietto": lo disegno come piccola icona SVG
+  function fischietto() {
+    const NS = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", "0 0 24 24");
+    svg.setAttribute("class", "icona");
+    svg.setAttribute("aria-hidden", "true");
+    [["circle", { cx: 15, cy: 14, r: 6.5, fill: "#4A5568" }],
+     ["rect", { x: 1.5, y: 8.5, width: 12, height: 5, rx: 1.5, fill: "#4A5568" }],
+     ["circle", { cx: 15, cy: 14, r: 2.2, fill: "#fff" }],
+     ["circle", { cx: 15, cy: 6.2, r: 2, fill: "none", stroke: "#4A5568", "stroke-width": 1.6 }]
+    ].forEach(function (x) {
+      const e = document.createElementNS(NS, x[0]);
+      for (const k in x[1]) e.setAttribute(k, x[1][k]);
+      svg.appendChild(e);
+    });
+    return svg;
+  }
+
+  function disegna(d) {
+    const info = d.info_gara || {};
+    const frag = document.createDocumentFragment();
+
+    // Sotto il titolo i riferimenti della partita: squadre, quando, dove e il pulsante per arrivarci
+    const partita = d.partita || {};
+    const box = el("div", "info-match");
+    const squadre = [d.casa && d.casa.squadra, d.ospite && d.ospite.squadra].filter(Boolean);
+    if (squadre.length === 2) box.appendChild(el("div", "squadre-match", squadre.join(" - ")));
+    const giornata = parseInt(info.giornata, 10);
+    const quale = giornata > 0 ? giornata + "ª giornata" : partita.giornata;
+    const campionato = [info.campionato, quale].filter(Boolean).join(" · ");
+    if (campionato) box.appendChild(el("div", null, "🏆 " + campionato));
+    if (info.data) {
+      const ora = partita.ora && String(info.data).indexOf(partita.ora) < 0 ? " ore " + partita.ora : "";
+      box.appendChild(el("div", null, "📅 " + info.data + ora));
+    }
+    const dove = [partita.campo, partita.localita].filter(Boolean).join(", ");
+    if (dove) box.appendChild(el("div", null, "🏟️ " + dove));
+    if (info.arbitro) {
+      const r = el("div", null);
+      r.appendChild(fischietto());
+      r.appendChild(document.createTextNode(" Arbitro: " + info.arbitro));
+      box.appendChild(r);
+    }
+    const guardalinee = [info.assistente1, info.assistente2]
+      .map(function (n) { return String(n || "").trim(); })
+      .filter(Boolean);
+    if (guardalinee.length) {
+      box.appendChild(el("div", null, guardalinee.map(function (n) { return "🚩 " + n; }).join("   ")));
+    }
+    if (dove) box.appendChild(linkMappa(dove));
+    frag.appendChild(box);
+
+    const diretta = el("div", "diretta");
+    diretta.id = "diretta";
+    diretta.hidden = true;
+    frag.appendChild(diretta);
+
+    if (d.pdf !== false) {  // giovanili: niente PDF online (ha i nomi completi), solo le liste ridotte
+      const pdf = el("a", "btn-pdf", "📄 SCARICA LA DISTINTA (PDF)");
+      pdf.href = "distinta.pdf?v=" + encodeURIComponent(d.aggiornato || Date.now());
+      pdf.setAttribute("download", "distinta_ufficiale_A4.pdf");
+      frag.appendChild(pdf);
+    }
+
+    frag.appendChild(cardSquadra(d.casa, "SQUADRA CASA"));
+    frag.appendChild(cardSquadra(d.ospite, "SQUADRA OSPITE"));
+
+    contenuto.replaceChildren(frag);
+    distintaAttuale = d;
+    disegnaDiretta();
+    const ora = formattaOra(d.aggiornato);
+    piede.textContent = "Aggiornamento automatico ogni 30 secondi" + (ora ? " · ultima distinta delle " + ora : "");
+  }
+
+  let classificaRecente = null;
+
+  function disegnaClassifica(box, cl) {
+    const frag = document.createDocumentFragment();
+    if (cl.righe && cl.righe.length) {
+      frag.appendChild(el("div", "attesa-titolo", "🏆 CLASSIFICA" + (cl.gruppo ? " " + String(cl.gruppo).toUpperCase() : "")));
+      const tab = el("table", "classifica-attesa");
+      const testa = el("tr");
+      [["#", ""], ["Squadra", "nome"], ["Pt", ""], ["G", ""]].forEach(function (c) { testa.appendChild(el("th", c[1], c[0])); });
+      tab.appendChild(testa);
+      cl.righe.forEach(function (r) {
+        const riga = el("tr", r.pos === cl.nostra ? "nostra" : "");
+        riga.appendChild(el("td", "", String(r.pos)));
+        const nome = el("td", "nome");
+        if (r.logo && /^https:\/\//.test(r.logo)) {
+          const img = el("img", "stemma");
+          img.src = r.logo;
+          img.alt = "";
+          img.loading = "lazy";
+          img.onerror = function () { img.remove(); };
+          nome.appendChild(img);
+        }
+        nome.appendChild(document.createTextNode(r.squadra));
+        riga.appendChild(nome);
+        riga.appendChild(el("td", "pt", String(r.pt)));
+        riga.appendChild(el("td", "", String(r.g)));
+        tab.appendChild(riga);
+      });
+      frag.appendChild(tab);
+      if (cl.aggiornata) {
+        const g = String(cl.aggiornata).slice(0, 10).split("-");
+        frag.appendChild(el("div", "classifica-nota", "Aggiornata il " + g[2] + "/" + g[1] + (cl.fonte ? " · fonte " + cl.fonte : "")));
+      }
+    }
+    box.replaceChildren(frag);
+  }
+
+  // la copia della classifica che l'app aggiorna da sola mattina e sera: ha anche "per_gruppo", una per squadra
+  function classificaFresca(gruppo, pubblicata) {
+    const cl = classificaRecente;
+    if (!cl) return pubblicata;
+    const pg = cl.per_gruppo && gruppo ? cl.per_gruppo[gruppo] : null;
+    if (pg && pg.righe && pg.righe.length) return pg;
+    if (gruppo) return cl.gruppo === gruppo ? cl : pubblicata;
+    return !pubblicata.gruppo || cl.gruppo === pubblicata.gruppo ? cl : pubblicata;
+  }
+
+  const giorni = ["dom", "lun", "mar", "mer", "gio", "ven", "sab"];
+  function dataBreve(iso) {  // "2026-10-26" -> "dom 26/10"
+    const p = String(iso || "").split("-");
+    if (p.length !== 3) return String(iso || "");
+    const g = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+    return giorni[g.getDay()] + " " + p[2] + "/" + p[1];
+  }
+
+  let squadraScelta = null;   // la scheda squadra aperta: resta quella anche quando la pagina si aggiorna
+  let sezioneCorrente = null; // {box della classifica, gruppo, classifica pubblicata}
+
+  // una partita resta "prossima" fino a due ore dopo il calcio d'inizio (senza ora: per tutto il giorno)
+  function ancoraDaGiocare(p) {
+    const g = String(p.data || "").split("-").map(Number);
+    if (g.length !== 3 || !g[0]) return true;
+    const o = String(p.ora || "").replace(".", ":").split(":").map(Number);
+    const fine = (o.length >= 2 && !isNaN(o[0]) && !isNaN(o[1]))
+      ? new Date(g[0], g[1] - 1, g[2], o[0], o[1]).getTime() + 2 * 3600 * 1000
+      : new Date(g[0], g[1] - 1, g[2] + 1).getTime();
+    return fine > Date.now();
+  }
+  function inizio(s) {  // quando gioca per prima la squadra: per scegliere la scheda da aprire
+    const p = (s.prossime || []).filter(ancoraDaGiocare)[0];
+    return p ? (p.data || "") + " " + (p.ora || "") : "~";
+  }
+
+  // prossime partite, ultimi risultati e classifica di una squadra (o di tutte, con i dati di prima)
+  function linkMappa(dove) {  // apre Google Maps (o l'app Mappe sul telefono) sull'indirizzo del campo
+    const mappa = el("a", "apri-mappa", "📍 Come arrivare");
+    mappa.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(dove);
+    mappa.target = "_blank";
+    mappa.rel = "noopener";
+    return mappa;
+  }
+
+  function disegnaSezione(corpo, s) {
+    const frag = document.createDocumentFragment();
+    const prossime = (s.prossime || []).filter(ancoraDaGiocare);
+    if (prossime.length) {
+      frag.appendChild(el("div", "attesa-titolo", prossime.length > 1 ? "📅 PROSSIME PARTITE" : "📅 PROSSIMA PARTITA"));
+      prossime.forEach(function (p) {
+        const card = el("div", "partita-prossima");
+        card.appendChild(el("div", "squadre", (p.casa || "") + " - " + (p.ospite || "")));
+        const dove = [p.campo, p.localita].filter(Boolean).join(", ");
+        const righe = [dataBreve(p.data) + (p.ora ? " ore " + p.ora : ""), p.competizione, p.giornata, dove]
+          .filter(Boolean);
+        card.appendChild(el("div", "dettagli", righe.join(" · ")));
+        if (dove) card.appendChild(linkMappa(dove));
+        frag.appendChild(card);
+      });
+    }
+    const risultati = s.risultati || [];
+    if (risultati.length) {
+      frag.appendChild(el("div", "attesa-titolo", "⚽ ULTIMI RISULTATI"));
+      risultati.forEach(function (r) {
+        const riga = el("div", "ris-attesa");
+        riga.appendChild(el("span", "data", String(r.data || "").slice(0, 5)));
+        riga.appendChild(el("span", "squadra destra", r.casa));
+        riga.appendChild(el("span", "punti", r.gol_casa + " - " + r.gol_ospite));
+        riga.appendChild(el("span", "squadra", r.ospite));
+        frag.appendChild(riga);
+      });
+    }
+    const boxClassifica = el("div");
+    const pubblicata = s.classifica || {};
+    sezioneCorrente = { box: boxClassifica, gruppo: s.gruppo || "", pubblicata: pubblicata };
+    disegnaClassifica(boxClassifica, classificaFresca(s.gruppo || "", pubblicata));
+    frag.appendChild(boxClassifica);
+    if (!prossime.length && !risultati.length && !(pubblicata.righe && pubblicata.righe.length) && s.gruppo) {
+      frag.appendChild(el("div", "messaggio vuoto", "Nessuna partita in programma per questa squadra."));
+    }
+    corpo.replaceChildren(frag);
+  }
+
+  // le schede che l'app ricalcola a ogni lettura dei dati LND (classifica.json): valgono se più recenti
+  let squadreRecenti = null;  // {generato, squadre}
+
+  function attesa(d, senzaRilettura) {
+    const box = messaggio(
+      "⏳ IN ATTESA DELLA PROSSIMA PARTITA",
+      "La partita precedente è conclusa. Le distinte della prossima gara saranno pubblicate qui " +
+      "appena disponibili: la pagina si aggiorna da sola."
+    );
+    box.classList.add("attesa");
+    const frag = document.createDocumentFragment();
+    frag.appendChild(box);
+    const corpo = el("div");
+    const recenti = squadreRecenti && squadreRecenti.generato > String((d && d.aggiornato) || "");
+    const squadre = ((recenti ? squadreRecenti.squadre : d && d.squadre) || [])
+      .filter(function (s) { return s && s.gruppo; });
+    if (squadre.length > 1) {
+      // una scheda per squadra (dai più grandi ai più piccoli): si apre quella che gioca per prima
+      if (!squadre.some(function (s) { return s.gruppo === squadraScelta; })) {
+        squadraScelta = squadre.slice().sort(function (a, b) { return inizio(a) < inizio(b) ? -1 : inizio(a) > inizio(b) ? 1 : 0; })[0].gruppo;
+      }
+      const schede = el("div", "schede-squadre");
+      schede.setAttribute("role", "group");
+      schede.setAttribute("aria-label", "Squadre");
+      squadre.forEach(function (s) {
+        const b = el("button", "scheda", s.gruppo);
+        b.type = "button";
+        b.setAttribute("aria-pressed", String(s.gruppo === squadraScelta));
+        b.addEventListener("click", function () {
+          squadraScelta = s.gruppo;
+          schede.querySelectorAll(".scheda").forEach(function (x) {
+            x.setAttribute("aria-pressed", String(x === b));
+          });
+          disegnaSezione(corpo, s);
+        });
+        schede.appendChild(b);
+      });
+      frag.appendChild(schede);
+      disegnaSezione(corpo, squadre.find(function (s) { return s.gruppo === squadraScelta; }));
+    } else if (squadre.length === 1) {
+      disegnaSezione(corpo, squadre[0]);
+    } else {  // distinta.json pubblicata prima delle schede squadra
+      disegnaSezione(corpo, { prossime: d && d.prossime, risultati: d && d.risultati, classifica: d && d.classifica });
+    }
+    frag.appendChild(corpo);
+    if (d && d.classifica_url && !senzaRilettura) {
+      fetch(d.classifica_url + "?ts=" + Date.now(), { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (cl) {
+          if (!cl) return;
+          if (Array.isArray(cl.squadre) && cl.generato && cl.generato > String(d.aggiornato || "") &&
+              !(squadreRecenti && squadreRecenti.generato === cl.generato)) {
+            squadreRecenti = { generato: cl.generato, squadre: cl.squadre };
+            if (cl.righe && cl.righe.length) classificaRecente = cl;
+            if (contenuto.contains(corpo)) attesa(d, true);  // ridisegna con i dati appena letti dalla LND
+            return;
+          }
+          if (cl.righe && cl.righe.length) {
+            classificaRecente = cl;
+            const c = sezioneCorrente;
+            if (c && c.box.isConnected) disegnaClassifica(c.box, classificaFresca(c.gruppo, c.pubblicata));
+          }
+        })
+        .catch(function () {});
+    }
+    contenuto.replaceChildren(frag);
+    piede.textContent = "Aggiornamento automatico ogni 30 secondi";
+  }
+
+  // ---- Contatore anonimo: una visita per apertura della pagina (e per ogni nuova partita pubblicata) ----
+  // Al telefono si dà un numero a caso, tenuto nel browser, per contare i dispositivi diversi: niente dati personali.
+  let partitaContata = null;
+  function idDispositivo() {
+    try {
+      let id = localStorage.getItem("visitatore");
+      if (!id) {
+        id = (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
+          : Date.now().toString(36) + Math.random().toString(36).slice(2);
+        localStorage.setItem("visitatore", id);
+      }
+      return id;
+    } catch (e) {
+      return "senza-memoria";
+    }
+  }
+  function contaVisita(v) {
+    if (!v || !v.url || !v.chiave || partitaContata === v.partita) return;
+    if (!/^https:\/\/[a-z0-9-]+\.supabase\.co\/rest\/v1\/rpc\/conta_visita$/.test(v.url)) return;
+    partitaContata = v.partita;
+    const intestazioni = { "Content-Type": "application/json", "apikey": v.chiave };
+    if (!/^sb_/.test(v.chiave)) intestazioni.Authorization = "Bearer " + v.chiave;  // chiavi "anon" vecchio tipo
+    fetch(v.url, { method: "POST", headers: intestazioni, keepalive: true,
+                   body: JSON.stringify({ p_partita: v.partita || "Pagina", p_dispositivo: idDispositivo() }) })
+      .catch(function () {});
+  }
+
+  async function carica() {
+    try {
+      // il parametro ts evita copie vecchie in cache
+      const r = await fetch("distinta.json?ts=" + Date.now(), { cache: "no-store" });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      const d = await r.json();
+      contaVisita(d && d.visite);
+      if (d && d.stato === "in_attesa") {  // partita archiviata: si aspetta la prossima
+        distintaAttuale = null;
+        attesa(d);
+        haDati = true;
+        return;
+      }
+      if (!d || !d.casa || !d.ospite) throw new Error("formato non valido");
+      disegna(d);
+      haDati = true;
+    } catch (e) {
+      if (!haDati) {
+        contenuto.replaceChildren(messaggio(
+          "⌛ DISTINTA IN AGGIORNAMENTO",
+          "La segreteria sta caricando le distinte ufficiali. La pagina si aggiorna da sola."
+        ));
+      } else {
+        // segnale debole: si lasciano a schermo gli ultimi dati letti
+        piede.textContent = "Connessione assente: mostrati gli ultimi dati ricevuti. Riprovo tra poco…";
+      }
+    }
+  }
+
+
+  // ---- Diretta: risultato, tempo di gioco ed eventi scritti dalla segreteria in Cronaca ----
+  let distintaAttuale = null, ultimaDiretta = null, eventiAperti = false;
+  const ICONE = { gol: "⚽", ammonizione: "🟨", espulsione: "🟥", sostituzione: "🔄" };
+
+  function minutoDiGioco(l) {
+    if (!l.inizio) return "";
+    const durata = parseInt(l.durata, 10) || 45;
+    const offset = l.fase === "secondo" ? durata : 0;
+    const trascorsi = Math.max(0, Math.floor((Date.now() / 1000 - l.inizio) / 60)) + 1;
+    return trascorsi > durata ? (offset + durata) + "+" + (trascorsi - durata) + "'" : (offset + trascorsi) + "'";
+  }
+
+  // Per l'ordine: i cambi fatti all'intervallo vanno tra il recupero del primo tempo e il secondo tempo
+  function numeroMinuto(m) {
+    const n = String(m || "").match(/\d+/g);
+    if (n) return parseInt(n[0], 10) + (n[1] ? parseInt(n[1], 10) / 100 : 0);
+    const testo = String(m || "").trim().toLowerCase();
+    const durata = parseInt(ultimaDiretta && ultimaDiretta.durata, 10) || 45;
+    if (testo.indexOf("inter") === 0) return durata + 0.99;
+    if (testo.indexOf("fine") === 0) return 999;
+    return 0;
+  }
+
+  function disegnaDiretta() {
+    const box = document.getElementById("diretta");
+    if (!box) return;
+    const d = distintaAttuale, l = ultimaDiretta;
+    const valida = d && l && l.distinta && l.distinta === d.aggiornato;
+    const eventi = valida ? (l.eventi || []) : [];
+    if (!valida || (l.stato === "prepartita" && !eventi.length)) { box.hidden = true; return; }
+
+    const tab = el("div", "tabellone");
+    const stato = el("div", "stato");
+    const testi = { primo: "1° TEMPO", secondo: "2° TEMPO", intervallo: "⏸️ INTERVALLO", finita: "🏁 FINALE", prepartita: "PRE-GARA" };
+    if (l.stato === "primo" || l.stato === "secondo") {
+      stato.appendChild(el("span", "punto"));
+      stato.appendChild(document.createTextNode("IN DIRETTA · " + testi[l.stato] + " · " + minutoDiGioco(l)));
+    } else {
+      stato.textContent = testi[l.stato] || "";
+    }
+    tab.appendChild(stato);
+    const ris = el("div", "risultato");
+    const gol = Array.isArray(l.gol) ? l.gol : [0, 0];
+    ris.appendChild(el("div", "sq casa", (d.casa && d.casa.squadra) || "Casa"));
+    ris.appendChild(el("div", "gol", (gol[0] || 0) + " - " + (gol[1] || 0)));
+    ris.appendChild(el("div", "sq ospite", (d.ospite && d.ospite.squadra) || "Ospite"));
+    tab.appendChild(ris);
+
+    // Gli eventi in una tendina chiusa (si vede solo il pulsante); aperta o chiusa resta com'è tra un aggiornamento e l'altro
+    const lista = el("div", "eventi");
+    const ordinati = eventi.filter(function (e) { return ICONE[e.tipo]; })
+      .sort(function (a, b) { return numeroMinuto(b.minuto) - numeroMinuto(a.minuto); });
+    if (!ordinati.length) {
+      lista.appendChild(el("div", "nessun-evento", "Nessun evento per ora"));
+    } else {
+      const bottone = el("button", "apri-eventi",
+        "📋 Eventi della partita (" + ordinati.length + ") " + (eventiAperti ? "▴" : "▾"));
+      bottone.type = "button";
+      bottone.setAttribute("aria-expanded", eventiAperti ? "true" : "false");
+      bottone.addEventListener("click", function () { eventiAperti = !eventiAperti; disegnaDiretta(); });
+      lista.appendChild(bottone);
+      if (eventiAperti) ordinati.forEach(function (e) { lista.appendChild(rigaEvento(e)); });
+    }
+    box.replaceChildren(tab, lista);
+    box.hidden = false;
+  }
+
+  // Una riga: casa a sinistra, minuto al centro, ospite a destra
+  function rigaEvento(e) {
+    const riga = el("div", "evento");
+    const casa = el("div", "lato casa"), ospite = el("div", "lato ospite");
+    const lato = e.squadra === "casa" ? casa : ospite;
+    const ico = el("span", "ico", ICONE[e.tipo]);
+    const chi = descrizioneEvento(e);
+    if (e.squadra === "casa") { lato.appendChild(chi); lato.appendChild(ico); }
+    else { lato.appendChild(ico); lato.appendChild(chi); }
+    riga.appendChild(casa);
+    riga.appendChild(el("span", "min", /^inter/i.test(e.minuto || "") ? "Int." : (e.minuto || "")));
+    riga.appendChild(ospite);
+    return riga;
+  }
+
+  // Il giocatore dell'evento; la sostituzione su due righe: chi entra e chi esce
+  function descrizioneEvento(e) {
+    const chi = el("span", "chi");
+    const cambio = e.tipo === "sostituzione" && /^\s*(entra\s+(.+?))?\s*,?\s*(esce\s+(.+?))?\s*$/i.exec(e.giocatore || "");
+    if (cambio && (cambio[2] || cambio[4])) {
+      if (cambio[2]) chi.appendChild(el("span", "riga-cambio entra", cambio[2]));
+      if (cambio[4]) chi.appendChild(el("span", "riga-cambio esce", cambio[4]));
+      return chi;
+    }
+    chi.textContent = e.giocatore || (e.tipo === "gol" ? "Gol" : "");
+    if (e.nota) chi.appendChild(el("span", "nota", " (" + e.nota + ")"));
+    return chi;
+  }
+
+  async function caricaDiretta() {
+    const url = distintaAttuale && distintaAttuale.live;
+    if (!url || !/^https:\/\/[a-z0-9-]+\.supabase\.co\/storage\/v1\/object\/public\//.test(url)) return;
+    try {
+      const r = await fetch(url + "?ts=" + Date.now(), { cache: "no-store" });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      ultimaDiretta = await r.json();
+    } catch (e) {
+      // segnale debole: resta l'ultimo risultato letto
+    }
+    disegnaDiretta();
+  }
+
+  // Righe equilibrate: 10 -> 3,3,2,2   9 -> 3,3,3   7 -> 3,2,2   4 -> 2,2   (massimo 3 per riga)
+  function distribuisciRighe(n, maxColonne) {
+    const righe = Math.ceil(n / maxColonne);
+    const base = Math.floor(n / righe), extra = n % righe;
+    return Array.from({ length: righe }, function (_, i) { return i < extra ? base + 1 : base; });
+  }
+
+  let firmaSponsor = null;
+  async function caricaSponsor() {
+    try {
+      const r = await fetch("sponsor.json?ts=" + Date.now(), { cache: "no-store" });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      const d = await r.json();
+      const voci = (d.sponsor || []).filter(function (v) {
+        return v && /^[A-Za-z0-9_.\-]+$/.test(String(v.file || ""));
+      }).slice(0, 15);  // stesso limite dell'app (MAX_SPONSOR)
+      const firma = voci.map(function (v) { return v.file; }).join("|");
+      if (firma === firmaSponsor) return;          // niente cambiato: non ridisegno
+      firmaSponsor = firma;
+
+      const griglia = document.getElementById("griglia-sponsor");
+      griglia.replaceChildren();
+      let i = 0;
+      distribuisciRighe(voci.length, 3).forEach(function (quanti) {
+        const riga = el("div", "riga-sponsor");
+        voci.slice(i, i + quanti).forEach(function (v) {
+          const cella = el("div", "cella");
+          const img = document.createElement("img");
+          img.src = "sponsor/" + v.file;
+          img.alt = v.nome || "Sponsor";
+          img.loading = "lazy";
+          cella.appendChild(img);
+          riga.appendChild(cella);
+        });
+        i += quanti;
+        griglia.appendChild(riga);
+      });
+      document.getElementById("sponsor").hidden = voci.length === 0;
+    } catch (e) {
+      // elenco non disponibile: si lasciano gli sponsor già mostrati (o nessuno)
+    }
+  }
+
+  carica().then(caricaDiretta);
+  caricaSponsor();
+  setInterval(function () { carica(); caricaSponsor(); }, INTERVALLO_MS);
+  setInterval(caricaDiretta, INTERVALLO_DIRETTA_MS);
+  // al ritorno sull'app (telefono sbloccato, cambio scheda) aggiorna subito
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) { carica().then(caricaDiretta); caricaSponsor(); }
+  });
+</script>
+</body>
+</html>
