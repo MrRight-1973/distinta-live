@@ -421,12 +421,40 @@
     piede.textContent = "Aggiornamento automatico ogni 30 secondi";
   }
 
+  // ---- Contatore anonimo: una visita per apertura della pagina (e per ogni nuova partita pubblicata) ----
+  // Al telefono si dà un numero a caso, tenuto nel browser, per contare i dispositivi diversi: niente dati personali.
+  let partitaContata = null;
+  function idDispositivo() {
+    try {
+      let id = localStorage.getItem("visitatore");
+      if (!id) {
+        id = (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
+          : Date.now().toString(36) + Math.random().toString(36).slice(2);
+        localStorage.setItem("visitatore", id);
+      }
+      return id;
+    } catch (e) {
+      return "senza-memoria";
+    }
+  }
+  function contaVisita(v) {
+    if (!v || !v.url || !v.chiave || partitaContata === v.partita) return;
+    if (!/^https:\/\/[a-z0-9-]+\.supabase\.co\/rest\/v1\/rpc\/conta_visita$/.test(v.url)) return;
+    partitaContata = v.partita;
+    const intestazioni = { "Content-Type": "application/json", "apikey": v.chiave };
+    if (!/^sb_/.test(v.chiave)) intestazioni.Authorization = "Bearer " + v.chiave;  // chiavi "anon" vecchio tipo
+    fetch(v.url, { method: "POST", headers: intestazioni, keepalive: true,
+                   body: JSON.stringify({ p_partita: v.partita || "Pagina", p_dispositivo: idDispositivo() }) })
+      .catch(function () {});
+  }
+
   async function carica() {
     try {
       // il parametro ts evita copie vecchie in cache
       const r = await fetch("distinta.json?ts=" + Date.now(), { cache: "no-store" });
       if (!r.ok) throw new Error("HTTP " + r.status);
       const d = await r.json();
+      contaVisita(d && d.visite);
       if (d && d.stato === "in_attesa") {  // partita archiviata: si aspetta la prossima
         distintaAttuale = null;
         attesa(d);
