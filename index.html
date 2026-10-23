@@ -260,10 +260,12 @@
     diretta.hidden = true;
     frag.appendChild(diretta);
 
-    const pdf = el("a", "btn-pdf", "📄 SCARICA LA DISTINTA (PDF)");
-    pdf.href = "distinta.pdf?v=" + encodeURIComponent(d.aggiornato || Date.now());
-    pdf.setAttribute("download", "distinta_ufficiale_A4.pdf");
-    frag.appendChild(pdf);
+    if (d.pdf !== false) {  // giovanili: niente PDF online (ha i nomi completi), solo le liste ridotte
+      const pdf = el("a", "btn-pdf", "📄 SCARICA LA DISTINTA (PDF)");
+      pdf.href = "distinta.pdf?v=" + encodeURIComponent(d.aggiornato || Date.now());
+      pdf.setAttribute("download", "distinta_ufficiale_A4.pdf");
+      frag.appendChild(pdf);
+    }
 
     frag.appendChild(cardSquadra(d.casa, "SQUADRA CASA"));
     frag.appendChild(cardSquadra(d.ospite, "SQUADRA OSPITE"));
