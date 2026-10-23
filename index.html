@@ -321,10 +321,25 @@
   let squadraScelta = null;   // la scheda squadra aperta: resta quella anche quando la pagina si aggiorna
   let sezioneCorrente = null; // {box della classifica, gruppo, classifica pubblicata}
 
+  // una partita resta "prossima" fino a due ore dopo il calcio d'inizio (senza ora: per tutto il giorno)
+  function ancoraDaGiocare(p) {
+    const g = String(p.data || "").split("-").map(Number);
+    if (g.length !== 3 || !g[0]) return true;
+    const o = String(p.ora || "").replace(".", ":").split(":").map(Number);
+    const fine = (o.length >= 2 && !isNaN(o[0]) && !isNaN(o[1]))
+      ? new Date(g[0], g[1] - 1, g[2], o[0], o[1]).getTime() + 2 * 3600 * 1000
+      : new Date(g[0], g[1] - 1, g[2] + 1).getTime();
+    return fine > Date.now();
+  }
+  function inizio(s) {  // quando gioca per prima la squadra: per scegliere la scheda da aprire
+    const p = (s.prossime || []).filter(ancoraDaGiocare)[0];
+    return p ? (p.data || "") + " " + (p.ora || "") : "~";
+  }
+
   // prossime partite, ultimi risultati e classifica di una squadra (o di tutte, con i dati di prima)
   function disegnaSezione(corpo, s) {
     const frag = document.createDocumentFragment();
-    const prossime = s.prossime || [];
+    const prossime = (s.prossime || []).filter(ancoraDaGiocare);
     if (prossime.length) {
       frag.appendChild(el("div", "attesa-titolo", prossime.length > 1 ? "📅 PROSSIME PARTITE" : "📅 PROSSIMA PARTITA"));
       prossime.forEach(function (p) {
@@ -367,7 +382,10 @@
     corpo.replaceChildren(frag);
   }
 
-  function attesa(d) {
+  // le schede che l'app ricalcola a ogni lettura dei dati LND (classifica.json): valgono se più recenti
+  let squadreRecenti = null;  // {generato, squadre}
+
+  function attesa(d, senzaRilettura) {
     const box = messaggio(
       "⏳ IN ATTESA DELLA PROSSIMA PARTITA",
       "La partita precedente è conclusa. Le distinte della prossima gara saranno pubblicate qui " +
@@ -377,10 +395,14 @@
     const frag = document.createDocumentFragment();
     frag.appendChild(box);
     const corpo = el("div");
-    const squadre = ((d && d.squadre) || []).filter(function (s) { return s && s.gruppo; });
+    const recenti = squadreRecenti && squadreRecenti.generato > String((d && d.aggiornato) || "");
+    const squadre = ((recenti ? squadreRecenti.squadre : d && d.squadre) || [])
+      .filter(function (s) { return s && s.gruppo; });
     if (squadre.length > 1) {
-      // una scheda per squadra: si tocca il nome e si vedono le sue partite e la sua classifica
-      if (!squadre.some(function (s) { return s.gruppo === squadraScelta; })) squadraScelta = squadre[0].gruppo;
+      // una scheda per squadra (dai più grandi ai più piccoli): si apre quella che gioca per prima
+      if (!squadre.some(function (s) { return s.gruppo === squadraScelta; })) {
+        squadraScelta = squadre.slice().sort(function (a, b) { return inizio(a) < inizio(b) ? -1 : inizio(a) > inizio(b) ? 1 : 0; })[0].gruppo;
+      }
       const schede = el("div", "schede-squadre");
       schede.setAttribute("role", "group");
       schede.setAttribute("aria-label", "Squadre");
@@ -405,11 +427,19 @@
       disegnaSezione(corpo, { prossime: d && d.prossime, risultati: d && d.risultati, classifica: d && d.classifica });
     }
     frag.appendChild(corpo);
-    if (d && d.classifica_url) {
+    if (d && d.classifica_url && !senzaRilettura) {
       fetch(d.classifica_url + "?ts=" + Date.now(), { cache: "no-store" })
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (cl) {
-          if (cl && cl.righe && cl.righe.length) {
+          if (!cl) return;
+          if (Array.isArray(cl.squadre) && cl.generato && cl.generato > String(d.aggiornato || "") &&
+              !(squadreRecenti && squadreRecenti.generato === cl.generato)) {
+            squadreRecenti = { generato: cl.generato, squadre: cl.squadre };
+            if (cl.righe && cl.righe.length) classificaRecente = cl;
+            if (contenuto.contains(corpo)) attesa(d, true);  // ridisegna con i dati appena letti dalla LND
+            return;
+          }
+          if (cl.righe && cl.righe.length) {
             classificaRecente = cl;
             const c = sezioneCorrente;
             if (c && c.box.isConnected) disegnaClassifica(c.box, classificaFresca(c.gruppo, c.pubblicata));
