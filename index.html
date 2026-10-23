@@ -36,6 +36,7 @@
   .info-match { text-align: center; color: var(--testo-chiaro); font-size: 14px; margin: 14px 0 16px; }
   .icona { width: 1.15em; height: 1.15em; vertical-align: -0.2em; }
   .info-match div + div { margin-top: 2px; }
+  .info-match .squadre-match { color: var(--blu-scuro); font-size: 16px; font-weight: 700; margin-bottom: 4px; }
 
   .btn-pdf {
     display: block; width: 100%; text-align: center; text-decoration: none;
@@ -224,11 +225,21 @@
     const info = d.info_gara || {};
     const frag = document.createDocumentFragment();
 
+    // Sotto il titolo i riferimenti della partita: squadre, quando, dove e il pulsante per arrivarci
+    const partita = d.partita || {};
     const box = el("div", "info-match");
+    const squadre = [d.casa && d.casa.squadra, d.ospite && d.ospite.squadra].filter(Boolean);
+    if (squadre.length === 2) box.appendChild(el("div", "squadre-match", squadre.join(" - ")));
     const giornata = parseInt(info.giornata, 10);
-    const campionato = [info.campionato, giornata > 0 ? giornata + "ª giornata" : ""].filter(Boolean).join(" · ");
+    const quale = giornata > 0 ? giornata + "ª giornata" : partita.giornata;
+    const campionato = [info.campionato, quale].filter(Boolean).join(" · ");
     if (campionato) box.appendChild(el("div", null, "🏆 " + campionato));
-    if (info.data) box.appendChild(el("div", null, "📅 " + info.data));
+    if (info.data) {
+      const ora = partita.ora && String(info.data).indexOf(partita.ora) < 0 ? " ore " + partita.ora : "";
+      box.appendChild(el("div", null, "📅 " + info.data + ora));
+    }
+    const dove = [partita.campo, partita.localita].filter(Boolean).join(", ");
+    if (dove) box.appendChild(el("div", null, "🏟️ " + dove));
     if (info.arbitro) {
       const r = el("div", null);
       r.appendChild(fischietto());
@@ -241,6 +252,7 @@
     if (guardalinee.length) {
       box.appendChild(el("div", null, guardalinee.map(function (n) { return "🚩 " + n; }).join("   ")));
     }
+    if (dove) box.appendChild(linkMappa(dove));
     frag.appendChild(box);
 
     const diretta = el("div", "diretta");
@@ -337,6 +349,14 @@
   }
 
   // prossime partite, ultimi risultati e classifica di una squadra (o di tutte, con i dati di prima)
+  function linkMappa(dove) {  // apre Google Maps (o l'app Mappe sul telefono) sull'indirizzo del campo
+    const mappa = el("a", "apri-mappa", "📍 Come arrivare");
+    mappa.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(dove);
+    mappa.target = "_blank";
+    mappa.rel = "noopener";
+    return mappa;
+  }
+
   function disegnaSezione(corpo, s) {
     const frag = document.createDocumentFragment();
     const prossime = (s.prossime || []).filter(ancoraDaGiocare);
@@ -349,13 +369,7 @@
         const righe = [dataBreve(p.data) + (p.ora ? " ore " + p.ora : ""), p.competizione, p.giornata, dove]
           .filter(Boolean);
         card.appendChild(el("div", "dettagli", righe.join(" · ")));
-        if (dove) {  // apre Google Maps (o l'app Mappe sul telefono) sull'indirizzo del campo
-          const mappa = el("a", "apri-mappa", "📍 Come arrivare");
-          mappa.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(dove);
-          mappa.target = "_blank";
-          mappa.rel = "noopener";
-          card.appendChild(mappa);
-        }
+        if (dove) card.appendChild(linkMappa(dove));
         frag.appendChild(card);
       });
     }
