@@ -1,0 +1,797 @@
+{
+  "stato": "in_attesa",
+  "aggiornato": "2026-10-23T07:55:12+00:00",
+  "classifica_url": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/classifica.json",
+  "prossime": [
+    {
+      "data": "2026-10-25",
+      "ora": "14:30",
+      "casa": "VIRTUS BAGNOLI ARRE ASD",
+      "ospite": "A.S.D. AZZURRA DUE CARRARE",
+      "competizione": "PRIMA CATEGORIA GIRONE E",
+      "giornata": "7ª andata",
+      "campo": "CAMPO COMUNALE",
+      "localita": "BAGNOLI DI SOPRA"
+    },
+    {
+      "data": "2026-11-01",
+      "ora": "14:30",
+      "casa": "A.S.D. AZZURRA DUE CARRARE",
+      "ospite": "TURCHESE",
+      "competizione": "PRIMA CATEGORIA GIRONE E",
+      "giornata": "8ª andata",
+      "campo": "CAMPO COMUNALE",
+      "localita": "DUE CARRARE"
+    },
+    {
+      "data": "2026-11-08",
+      "ora": "14:30",
+      "casa": "MONTAGNANA",
+      "ospite": "A.S.D. AZZURRA DUE CARRARE",
+      "competizione": "PRIMA CATEGORIA GIRONE E",
+      "giornata": "9ª andata",
+      "campo": "CAMPO COMUNALE GINO FIORAVANTI",
+      "localita": "MONTAGNANA"
+    }
+  ],
+  "risultati": [
+    {
+      "data": "21/10/2026",
+      "casa": "A.S.D. AZZURRA DUE CARRARE",
+      "ospite": "ASD SPES POJANA",
+      "gol_casa": 2,
+      "gol_ospite": 6,
+      "competizione": "TROFEO REGIONE VENETO"
+    },
+    {
+      "data": "18/10/2026",
+      "casa": "AZZURRA DUE CARRARE",
+      "ospite": "A.S.D. RIVEREEL SOSANO",
+      "gol_casa": 2,
+      "gol_ospite": 1,
+      "competizione": "PRIMA CATEGORIA GIRONE E"
+    },
+    {
+      "data": "11/10/2026",
+      "casa": "A.P. DUE STELLE A.S.D.",
+      "ospite": "AZZURRA DUECARRARE",
+      "gol_casa": 1,
+      "gol_ospite": 2,
+      "competizione": "PRIMA CATEGORIA GIRONE E"
+    },
+    {
+      "data": "04/10/2026",
+      "casa": "AZZURRA DUECARRARE",
+      "ospite": "ASD SPES POJANA",
+      "gol_casa": 1,
+      "gol_ospite": 0,
+      "competizione": "PRIMA CATEGORIA GIRONE E"
+    },
+    {
+      "data": "27/09/2026",
+      "casa": "BOCAR JUNIORS",
+      "ospite": "AZZURRA DUECARRARE",
+      "gol_casa": 2,
+      "gol_ospite": 0,
+      "competizione": "PRIMA CATEGORIA GIRONE E"
+    }
+  ],
+  "classifica": {
+    "gruppo": "PRIMA CATEGORIA",
+    "aggiornata": "2026-10-23 07:10",
+    "nostra": 3,
+    "fonte": "LND",
+    "righe": [
+      {
+        "pos": 1,
+        "squadra": "Scardovari",
+        "pt": 16,
+        "g": 6,
+        "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/scardovari.jpg"
+      },
+      {
+        "pos": 2,
+        "squadra": "Virtus Bagnoli Arre Asd",
+        "pt": 13,
+        "g": 6,
+        "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/virtus-bagnoli-arre-asd.jpg"
+      },
+      {
+        "pos": 3,
+        "squadra": "Azzurra Due Carrare",
+        "pt": 13,
+        "g": 6,
+        "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/azzurra-due-carrare.jpg"
+      },
+      {
+        "pos": 4,
+        "squadra": "Villanovese",
+        "pt": 12,
+        "g": 6,
+        "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/villanovese.png"
+      },
+      {
+        "pos": 5,
+        "squadra": "Bocar Juniors Arl",
+        "pt": 10,
+        "g": 6,
+        "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/bocar-juniors-arl.jpg"
+      },
+      {
+        "pos": 6,
+        "squadra": "Montagnana",
+        "pt": 10,
+        "g": 6,
+        "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/montagnana.jpg"
+      },
+      {
+        "pos": 7,
+        "squadra": "Turchese",
+        "pt": 8,
+        "g": 6,
+        "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/turchese.png"
+      },
+      {
+        "pos": 8,
+        "squadra": "Spes Pojana",
+        "pt": 8,
+        "g": 6,
+        "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/spes-pojana.png"
+      },
+      {
+        "pos": 9,
+        "squadra": "Fiessese",
+        "pt": 7,
+        "g": 6,
+        "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/fiessese.png"
+      },
+      {
+        "pos": 10,
+        "squadra": "Polisportiva Real Terme",
+        "pt": 7,
+        "g": 6,
+        "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/polisportiva-real-terme.jpg"
+      },
+      {
+        "pos": 11,
+        "squadra": "Psn Legnaro Polverara",
+        "pt": 7,
+        "g": 6,
+        "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/psn-legnaro-polverara.png"
+      },
+      {
+        "pos": 12,
+        "squadra": "Union River",
+        "pt": 7,
+        "g": 6,
+        "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/union-river.jpg"
+      },
+      {
+        "pos": 13,
+        "squadra": "Altopolesine",
+        "pt": 5,
+        "g": 6,
+        "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/altopolesine.jpg"
+      },
+      {
+        "pos": 14,
+        "squadra": "Pettorazza San Martino",
+        "pt": 4,
+        "g": 6,
+        "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/pettorazza-san-martino.png"
+      },
+      {
+        "pos": 15,
+        "squadra": "Rivereel Sossano",
+        "pt": 4,
+        "g": 6,
+        "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/rivereel-sossano.jpg"
+      },
+      {
+        "pos": 16,
+        "squadra": "Due Stelle A.s.d",
+        "pt": 1,
+        "g": 6,
+        "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/due-stelle-a-s-d.jpg"
+      }
+    ]
+  },
+  "squadre": [
+    {
+      "gruppo": "PRIMA CATEGORIA",
+      "prossime": [
+        {
+          "data": "2026-10-25",
+          "ora": "14:30",
+          "casa": "Virtus Bagnoli Arre Asd",
+          "ospite": "Azzurra Due Carrare",
+          "competizione": "PRIMA CATEGORIA GIRONE E",
+          "giornata": "7ª andata",
+          "campo": "Campo Comunale",
+          "localita": "Bagnoli Di Sopra"
+        },
+        {
+          "data": "2026-11-01",
+          "ora": "14:30",
+          "casa": "Azzurra Due Carrare",
+          "ospite": "Turchese",
+          "competizione": "PRIMA CATEGORIA GIRONE E",
+          "giornata": "8ª andata",
+          "campo": "Campo Comunale",
+          "localita": "Due Carrare"
+        },
+        {
+          "data": "2026-11-08",
+          "ora": "14:30",
+          "casa": "Montagnana",
+          "ospite": "Azzurra Due Carrare",
+          "competizione": "PRIMA CATEGORIA GIRONE E",
+          "giornata": "9ª andata",
+          "campo": "Campo Comunale Gino Fioravanti",
+          "localita": "Montagnana"
+        }
+      ],
+      "risultati": [
+        {
+          "data": "21/10/2026",
+          "casa": "A.S.D. Azzurra Due Carrare",
+          "ospite": "ASD Spes Pojana",
+          "gol_casa": 2,
+          "gol_ospite": 6,
+          "competizione": "TROFEO REGIONE VENETO"
+        },
+        {
+          "data": "18/10/2026",
+          "casa": "Azzurra Due Carrare",
+          "ospite": "Rivereel Sossano",
+          "gol_casa": 2,
+          "gol_ospite": 1,
+          "competizione": "PRIMA CATEGORIA GIRONE E"
+        },
+        {
+          "data": "11/10/2026",
+          "casa": "Due Stelle A.s.d",
+          "ospite": "Azzurra Due Carrare",
+          "gol_casa": 1,
+          "gol_ospite": 2,
+          "competizione": "PRIMA CATEGORIA GIRONE E"
+        },
+        {
+          "data": "04/10/2026",
+          "casa": "Azzurra Due Carrare",
+          "ospite": "Spes Pojana",
+          "gol_casa": 1,
+          "gol_ospite": 0,
+          "competizione": "PRIMA CATEGORIA GIRONE E"
+        },
+        {
+          "data": "27/09/2026",
+          "casa": "Bocar Juniors Arl",
+          "ospite": "Azzurra Due Carrare",
+          "gol_casa": 2,
+          "gol_ospite": 0,
+          "competizione": "PRIMA CATEGORIA GIRONE E"
+        }
+      ],
+      "classifica": {
+        "gruppo": "PRIMA CATEGORIA",
+        "aggiornata": "2026-10-23 07:10",
+        "nostra": 3,
+        "fonte": "LND",
+        "righe": [
+          {
+            "pos": 1,
+            "squadra": "Scardovari",
+            "pt": 16,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/scardovari.jpg"
+          },
+          {
+            "pos": 2,
+            "squadra": "Virtus Bagnoli Arre Asd",
+            "pt": 13,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/virtus-bagnoli-arre-asd.jpg"
+          },
+          {
+            "pos": 3,
+            "squadra": "Azzurra Due Carrare",
+            "pt": 13,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/azzurra-due-carrare.jpg"
+          },
+          {
+            "pos": 4,
+            "squadra": "Villanovese",
+            "pt": 12,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/villanovese.png"
+          },
+          {
+            "pos": 5,
+            "squadra": "Bocar Juniors Arl",
+            "pt": 10,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/bocar-juniors-arl.jpg"
+          },
+          {
+            "pos": 6,
+            "squadra": "Montagnana",
+            "pt": 10,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/montagnana.jpg"
+          },
+          {
+            "pos": 7,
+            "squadra": "Turchese",
+            "pt": 8,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/turchese.png"
+          },
+          {
+            "pos": 8,
+            "squadra": "Spes Pojana",
+            "pt": 8,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/spes-pojana.png"
+          },
+          {
+            "pos": 9,
+            "squadra": "Fiessese",
+            "pt": 7,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/fiessese.png"
+          },
+          {
+            "pos": 10,
+            "squadra": "Polisportiva Real Terme",
+            "pt": 7,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/polisportiva-real-terme.jpg"
+          },
+          {
+            "pos": 11,
+            "squadra": "Psn Legnaro Polverara",
+            "pt": 7,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/psn-legnaro-polverara.png"
+          },
+          {
+            "pos": 12,
+            "squadra": "Union River",
+            "pt": 7,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/union-river.jpg"
+          },
+          {
+            "pos": 13,
+            "squadra": "Altopolesine",
+            "pt": 5,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/altopolesine.jpg"
+          },
+          {
+            "pos": 14,
+            "squadra": "Pettorazza San Martino",
+            "pt": 4,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/pettorazza-san-martino.png"
+          },
+          {
+            "pos": 15,
+            "squadra": "Rivereel Sossano",
+            "pt": 4,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/rivereel-sossano.jpg"
+          },
+          {
+            "pos": 16,
+            "squadra": "Due Stelle A.s.d",
+            "pt": 1,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/due-stelle-a-s-d.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "gruppo": "JUNIORES",
+      "prossime": [
+        {
+          "data": "2026-10-24",
+          "ora": "15:30",
+          "casa": "Azzurra Due Carrare",
+          "ospite": "Arcella Padova A.s.d",
+          "competizione": "",
+          "giornata": "Andata · 7ª giornata",
+          "campo": "Campo Comunale Via Pontemanco,1, Due Carrare (Pd)",
+          "localita": ""
+        },
+        {
+          "data": "2026-10-31",
+          "ora": "15:00",
+          "casa": "Mestrino United F.c",
+          "ospite": "Azzurra Due Carrare",
+          "competizione": "",
+          "giornata": "Andata · 8ª giornata",
+          "campo": "Campo Comunale \"Secondario\" Via Lissaro 50, Campodoro (Pd)",
+          "localita": ""
+        },
+        {
+          "data": "2026-11-07",
+          "ora": "15:00",
+          "casa": "Azzurra Due Carrare",
+          "ospite": "Ardisci E Spera",
+          "competizione": "",
+          "giornata": "Andata · 9ª giornata",
+          "campo": "Campo Comunale Via Pontemanco,1, Due Carrare (Pd)",
+          "localita": ""
+        }
+      ],
+      "risultati": [
+        {
+          "data": "17/10/2026",
+          "casa": "Adriese Usd 1906",
+          "ospite": "Azzurra Due Carrare",
+          "gol_casa": 1,
+          "gol_ospite": 5,
+          "competizione": ""
+        },
+        {
+          "data": "10/10/2026",
+          "casa": "Azzurra Due Carrare",
+          "ospite": "United Borgoriccocampetra",
+          "gol_casa": 0,
+          "gol_ospite": 7,
+          "competizione": ""
+        },
+        {
+          "data": "03/10/2026",
+          "casa": "Albignasego Calcio",
+          "ospite": "Azzurra Due Carrare",
+          "gol_casa": 2,
+          "gol_ospite": 0,
+          "competizione": ""
+        },
+        {
+          "data": "26/09/2026",
+          "casa": "Azzurra Due Carrare",
+          "ospite": "Union Vis Lendinara",
+          "gol_casa": 2,
+          "gol_ospite": 0,
+          "competizione": ""
+        },
+        {
+          "data": "19/09/2026",
+          "casa": "Unione Cadoneghe",
+          "ospite": "Azzurra Due Carrare",
+          "gol_casa": 2,
+          "gol_ospite": 0,
+          "competizione": ""
+        }
+      ],
+      "classifica": {
+        "gruppo": "JUNIORES",
+        "aggiornata": "2026-10-23 07:10",
+        "nostra": 10,
+        "fonte": "LND",
+        "righe": [
+          {
+            "pos": 1,
+            "squadra": "United Borgoriccocampetra",
+            "pt": 13,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/united-borgoriccocampetra.png"
+          },
+          {
+            "pos": 2,
+            "squadra": "Vigontina San Paolo",
+            "pt": 13,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/vigontina-san-paolo.png"
+          },
+          {
+            "pos": 3,
+            "squadra": "Unione Cadoneghe",
+            "pt": 13,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/unione-cadoneghe.jpg"
+          },
+          {
+            "pos": 4,
+            "squadra": "Union Vis Lendinara",
+            "pt": 12,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/union-vis-lendinara.jpg"
+          },
+          {
+            "pos": 5,
+            "squadra": "Arcella Padova A.s.d",
+            "pt": 11,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/arcella-padova-a-s-d.png"
+          },
+          {
+            "pos": 6,
+            "squadra": "Mestrino United F.c",
+            "pt": 11,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/mestrino-united-f-c.jpg"
+          },
+          {
+            "pos": 7,
+            "squadra": "Calcio Saonara Villatora",
+            "pt": 10,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/calcio-saonara-villatora.jpg"
+          },
+          {
+            "pos": 8,
+            "squadra": "Camisano Calcio 1910",
+            "pt": 9,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/camisano-calcio-1910.png"
+          },
+          {
+            "pos": 9,
+            "squadra": "La Rocca Monselice",
+            "pt": 9,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/la-rocca-monselice.jpg"
+          },
+          {
+            "pos": 10,
+            "squadra": "Azzurra Due Carrare",
+            "pt": 9,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/azzurra-due-carrare.jpg"
+          },
+          {
+            "pos": 11,
+            "squadra": "Albignasego Calcio",
+            "pt": 7,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/albignasego-calcio.jpg"
+          },
+          {
+            "pos": 12,
+            "squadra": "Bocar Juniors Arl",
+            "pt": 6,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/bocar-juniors-arl.jpg"
+          },
+          {
+            "pos": 13,
+            "squadra": "Ardisci E Spera",
+            "pt": 5,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/ardisci-e-spera.png"
+          },
+          {
+            "pos": 14,
+            "squadra": "Union River",
+            "pt": 3,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/union-river.jpg"
+          },
+          {
+            "pos": 15,
+            "squadra": "Piovese S.s.d.ar.l",
+            "pt": 1,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/piovese-s-s-d-ar-l.png"
+          },
+          {
+            "pos": 16,
+            "squadra": "Adriese Usd 1906",
+            "pt": 0,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/adriese-usd-1906.png"
+          }
+        ]
+      }
+    },
+    {
+      "gruppo": "ALLIEVI",
+      "prossime": [
+        {
+          "data": "2026-10-25",
+          "ora": "10:30",
+          "casa": "Azzurra Due Carrare",
+          "ospite": "Unione La Rocca Altavilla",
+          "competizione": "",
+          "giornata": "Andata · 7ª giornata",
+          "campo": "Campo Comunale Via Pontemanco,1, Due Carrare (Pd)",
+          "localita": ""
+        },
+        {
+          "data": "2026-11-01",
+          "ora": "10:30",
+          "casa": "Union Torri",
+          "ospite": "Azzurra Due Carrare",
+          "competizione": "",
+          "giornata": "Andata · 8ª giornata",
+          "campo": "Campo Comunale \"Sintetico\" Via S.Martino, Torri Di Quartesolo (Vi)",
+          "localita": ""
+        },
+        {
+          "data": "2026-11-08",
+          "ora": "10:30",
+          "casa": "Azzurra Due Carrare",
+          "ospite": "Camisano Calcio 1910",
+          "competizione": "",
+          "giornata": "Andata · 9ª giornata",
+          "campo": "Campo Comunale Via Pontemanco,1, Due Carrare (Pd)",
+          "localita": ""
+        }
+      ],
+      "risultati": [
+        {
+          "data": "18/10/2026",
+          "casa": "Calcio Saonara Villatora",
+          "ospite": "Azzurra Due Carrare",
+          "gol_casa": 3,
+          "gol_ospite": 0,
+          "competizione": ""
+        },
+        {
+          "data": "11/10/2026",
+          "casa": "Azzurra Due Carrare",
+          "ospite": "Unione Cadoneghe",
+          "gol_casa": 3,
+          "gol_ospite": 3,
+          "competizione": ""
+        },
+        {
+          "data": "04/10/2026",
+          "casa": "Mestrino United F.c",
+          "ospite": "Azzurra Due Carrare",
+          "gol_casa": 3,
+          "gol_ospite": 1,
+          "competizione": ""
+        },
+        {
+          "data": "27/09/2026",
+          "casa": "Azzurra Due Carrare",
+          "ospite": "Union Vis Lendinara",
+          "gol_casa": 0,
+          "gol_ospite": 6,
+          "competizione": ""
+        },
+        {
+          "data": "20/09/2026",
+          "casa": "Union River",
+          "ospite": "Azzurra Due Carrare",
+          "gol_casa": 4,
+          "gol_ospite": 2,
+          "competizione": ""
+        }
+      ],
+      "classifica": {
+        "gruppo": "ALLIEVI",
+        "aggiornata": "2026-10-23 07:11",
+        "nostra": 16,
+        "fonte": "LND",
+        "righe": [
+          {
+            "pos": 1,
+            "squadra": "Camisano Calcio 1910",
+            "pt": 18,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/camisano-calcio-1910.png"
+          },
+          {
+            "pos": 2,
+            "squadra": "Piovese S.s.d.ar.l",
+            "pt": 15,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/piovese-s-s-d-ar-l.png"
+          },
+          {
+            "pos": 3,
+            "squadra": "Union Torri",
+            "pt": 15,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/union-torri.jpg"
+          },
+          {
+            "pos": 4,
+            "squadra": "Union Campo San Martino",
+            "pt": 13,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/union-campo-san-martino.png"
+          },
+          {
+            "pos": 5,
+            "squadra": "Union Vis Lendinara",
+            "pt": 11,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/union-vis-lendinara.jpg"
+          },
+          {
+            "pos": 6,
+            "squadra": "Union Cologna Minerbe",
+            "pt": 10,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/union-cologna-minerbe.jpg"
+          },
+          {
+            "pos": 7,
+            "squadra": "Mestrino United F.c",
+            "pt": 10,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/mestrino-united-f-c.jpg"
+          },
+          {
+            "pos": 8,
+            "squadra": "Padova Football Academy",
+            "pt": 7,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/padova-football-academy.png"
+          },
+          {
+            "pos": 9,
+            "squadra": "Unionclodiensechioggia Fc",
+            "pt": 6,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/unionclodiensechioggia-fc.jpg"
+          },
+          {
+            "pos": 10,
+            "squadra": "Calcio Saonara Villatora",
+            "pt": 6,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/calcio-saonara-villatora.jpg"
+          },
+          {
+            "pos": 11,
+            "squadra": "Unione La Rocca Altavilla",
+            "pt": 5,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/unione-la-rocca-altavilla.png"
+          },
+          {
+            "pos": 12,
+            "squadra": "Junior Monticello",
+            "pt": 5,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/junior-monticello.png"
+          },
+          {
+            "pos": 13,
+            "squadra": "Union River",
+            "pt": 4,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/union-river.jpg"
+          },
+          {
+            "pos": 14,
+            "squadra": "Virtus Abano",
+            "pt": 3,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/virtus-abano.jpg"
+          },
+          {
+            "pos": 15,
+            "squadra": "Unione Cadoneghe",
+            "pt": 3,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/unione-cadoneghe.jpg"
+          },
+          {
+            "pos": 16,
+            "squadra": "Azzurra Due Carrare",
+            "pt": 1,
+            "g": 6,
+            "logo": "https://fewcllyliuxlcosqnqob.supabase.co/storage/v1/object/public/live/loghi/azzurra-due-carrare.jpg"
+          }
+        ]
+      }
+    }
+  ],
+  "visite": {
+    "url": "https://fewcllyliuxlcosqnqob.supabase.co/rest/v1/rpc/conta_visita",
+    "chiave": "sb_publishable_Ed39Z_oyzlEHr-iO3NZM5w_vwPPlhgk",
+    "partita": "In attesa della prossima partita"
+  }
+}
